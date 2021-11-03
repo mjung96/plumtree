@@ -18,7 +18,7 @@ export default function Header() {
 
     return(
         <header>
-            <AppBar>
+            <AppBar position="sticky">
                 <Toolbar style={{ backgroundColor: 'white', display: 'flex', justifyContent: 'space-between' }}>
                     <React.Fragment>
 

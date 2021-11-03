@@ -7,27 +7,17 @@ import UploadPage from './UploadPage';
 import CoachingPage from './CoachingPage';
 
 export default function MainPage() {
-
-    // useEffect(() => {
-    //     fetch('http://localhost:3001/years/2019/')
-    //         .then(res => {
-    //             return res.json();
-    //         })
-    //         .then(data => {
-    //             console.log(data);
-    //             console.log(data.weeks[1].drivers)
-    //         })
-    // }, []);
-
     return (
         <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginLeft: '1%', marginRight: '1%' }}>
+            <div>
                 <Header/>
                 <div>
+                    <Grid>
                     <Switch>
                         <Route path="/upload" component={UploadPage}/>
                         <Route path="/coaching" component={CoachingPage}/>
                     </Switch>
+                    </Grid>
                 </div>
             </div>
         </>
