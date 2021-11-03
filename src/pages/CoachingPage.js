@@ -38,7 +38,7 @@ export default function CoachingPage() {
 
     return (
         <div>
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+            <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 5 }}>
                 <InputLabel id="demo-simple-select-standard-label">Year</InputLabel>
                 <Select
                 labelId="demo-simple-select-standard-label"
@@ -98,7 +98,7 @@ export default function CoachingPage() {
                 <Button 
                 disabled={true} 
                 variant="contained" 
-                style={{ marginLeft: 70, backgroundColor: '#79719880', color: 'white', marginTop: 25, width: '344px', height: '44px' }} 
+                style={{ marginLeft: 110, backgroundColor: '#79719880', color: 'white', marginTop: 15, width: '344px', height: '44px' }} 
                 disableElevation
                 >
                     Submit
@@ -109,7 +109,7 @@ export default function CoachingPage() {
                 <Button 
                 disabled={false} 
                 variant="contained" 
-                style={{ marginLeft: 70, backgroundColor: '#797198', color: 'white', marginTop: 25, width: '344px', height: '44px' }} 
+                style={{ marginLeft: 110, backgroundColor: '#797198', color: 'white', marginTop: 15, width: '344px', height: '44px' }} 
                 disableElevation 
                 component="label"
                 onClick={showData}
