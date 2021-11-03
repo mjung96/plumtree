@@ -4,11 +4,7 @@ import MainPage from './pages/MainPage';
 
 function App() {
   return (
-    <Router> 
-      <div className="App" style={{ overflow: 'hidden' }}>
-        <MainPage />
-      </div>
-    </Router>
+    <MainPage />
   );
 }
 

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Card, Button, Grid } from '@material-ui/core';
+import Header from '../components/Header';
 
 export default function MainPage() {
     useEffect(() => {
@@ -13,8 +15,10 @@ export default function MainPage() {
     }, []);
 
     return (
-        <div>
-            <h1>hello there</h1>
-        </div>
+        <>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginLeft: '1%', marginRight: '1%' }}>
+                <Header/>
+            </div>
+        </>
     )
 }
