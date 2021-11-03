@@ -1,0 +1,217 @@
+{
+  "years": [
+    {
+      "id": 2019,
+      "weeks": [
+        {
+          "id": 1,
+          "drivers": [
+            { 
+              "id": 1, 
+              "name": "Driver2019-w1-1", 
+              "fico": 780, 
+              "seatbelt": 1, 
+              "speeding": 2, 
+              "del_rec": 100, 
+              "photo_on_del": 99.6, 
+              "contact_compliance": 100,
+              "scan_compliance": 99.77,
+              "ada": 0,
+              "did_not_rec": 4
+            },
+            { 
+              "id": 2, 
+              "name": "Driver2019-w1-2", 
+              "fico": 810, 
+              "seatbelt": 3, 
+              "speeding": 4, 
+              "del_rec": 80, 
+              "photo_on_del": 92.5, 
+              "contact_compliance": 97,
+              "scan_compliance": 98.22,
+              "ada": 1,
+              "did_not_rec": 2
+            },
+            { 
+              "id": 3, 
+              "name": "Driver2019-w1-3", 
+              "fico": 730, 
+              "seatbelt": 2, 
+              "speeding": 2, 
+              "del_rec": 88, 
+              "photo_on_del": 82.3, 
+              "contact_compliance": 99,
+              "scan_compliance": 99.11,
+              "ada": 4,
+              "did_not_rec": 1
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "drivers": [
+            { 
+              "id": 1, 
+              "name": "Driver2019-w2-1", 
+              "fico": 780, 
+              "seatbelt": 1, 
+              "speeding": 2, 
+              "del_rec": 100, 
+              "photo_on_del": 99.6, 
+              "contact_compliance": 100,
+              "scan_compliance": 99.77,
+              "ada": 0,
+              "did_not_rec": 4
+            },
+            { 
+              "id": 2, 
+              "name": "Driver2019-w2-2", 
+              "fico": 810, 
+              "seatbelt": 3, 
+              "speeding": 4, 
+              "del_rec": 80, 
+              "photo_on_del": 92.5, 
+              "contact_compliance": 97,
+              "scan_compliance": 98.22,
+              "ada": 1,
+              "did_not_rec": 2
+            },
+            { 
+              "id": 3, 
+              "name": "Driver2019-w2-3", 
+              "fico": 730, 
+              "seatbelt": 2, 
+              "speeding": 2, 
+              "del_rec": 88, 
+              "photo_on_del": 82.3, 
+              "contact_compliance": 99,
+              "scan_compliance": 99.11,
+              "ada": 4,
+              "did_not_rec": 1
+            },
+            { 
+              "id": 4, 
+              "name": "Driver2019-w2-4", 
+              "fico": 797, 
+              "seatbelt": 1, 
+              "speeding": 2, 
+              "del_rec": 99, 
+              "photo_on_del": 99.2, 
+              "contact_compliance": 99,
+              "scan_compliance": 99.22,
+              "ada": 4,
+              "did_not_rec": 4
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "drivers": [
+            { 
+              "id": 1, 
+              "name": "Driver2019-w3-1", 
+              "fico": 780, 
+              "seatbelt": 1, 
+              "speeding": 2, 
+              "del_rec": 100, 
+              "photo_on_del": 99.6, 
+              "contact_compliance": 100,
+              "scan_compliance": 99.77,
+              "ada": 0,
+              "did_not_rec": 4
+            },
+            { 
+              "id": 2, 
+              "name": "Driver2019-w3-2", 
+              "fico": 810, 
+              "seatbelt": 3, 
+              "speeding": 4, 
+              "del_rec": 80, 
+              "photo_on_del": 92.5, 
+              "contact_compliance": 97,
+              "scan_compliance": 98.22,
+              "ada": 1,
+              "did_not_rec": 2
+            },
+            { 
+              "id": 3, 
+              "name": "Driver2019-w3-3", 
+              "fico": 730, 
+              "seatbelt": 2, 
+              "speeding": 2, 
+              "del_rec": 88, 
+              "photo_on_del": 82.3, 
+              "contact_compliance": 99,
+              "scan_compliance": 99.11,
+              "ada": 4,
+              "did_not_rec": 1
+            },
+            { 
+              "id": 4, 
+              "name": "Driver2019-w3-4", 
+              "fico": 797, 
+              "seatbelt": 1, 
+              "speeding": 2, 
+              "del_rec": 99, 
+              "photo_on_del": 99.2, 
+              "contact_compliance": 99,
+              "scan_compliance": 99.22,
+              "ada": 4,
+              "did_not_rec": 4
+            },
+            { 
+              "id": 5, 
+              "name": "Driver2019-w3-5", 
+              "fico": 832, 
+              "seatbelt": 3, 
+              "speeding": 3, 
+              "del_rec": 88, 
+              "photo_on_del": 88.9, 
+              "contact_compliance": 99,
+              "scan_compliance": 99.99,
+              "ada": 1,
+              "did_not_rec": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2020,
+      "weeks": [
+        {
+          "id": 1
+        },
+        {
+          "id": 2
+        },
+        {
+          "id": 3
+        },
+        {
+          "id": 4
+        }
+      ]
+    },
+    {
+      "id": 2021,
+      "weeks": [
+        {
+          "id": 1
+        },
+        {
+          "id": 2
+        },
+        {
+          "id": 3
+        },
+        {
+          "id": 4
+        },
+        {
+          "id": 5
+        }
+      ]
+    }
+  ]
+}
