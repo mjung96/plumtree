@@ -5,6 +5,17 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import { Button, Grid, Card, Box } from "@material-ui/core";
 
+// useEffect(() => {
+    //     fetch('http://localhost:3001/years/2019/')
+    //         .then(res => {
+    //             return res.json();
+    //         })
+    //         .then(data => {
+    //             console.log(data);
+    //             console.log(data.weeks[1].drivers)
+    //         })
+    // }, []);
+
 export default function CoachingPage() {
     const [driver, setDriver] = useState('');
     const [year, setYear] = useState('');

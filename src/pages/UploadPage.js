@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Grid, Card, Box } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import TextField from '@mui/material/TextField';
-import { UploadFile } from '@mui/icons-material';
 import CircularProgress from '@mui/material/CircularProgress';
 
 export default function UploadPage() {
@@ -9,17 +8,6 @@ export default function UploadPage() {
     const [canClick, setCanClick] = useState(true);
     const [loading, setLoading] = useState(false);
     const [uploadComplete, setUploadComplete] = useState(false);
-    
-    // useEffect(() => {
-    //     fetch('http://localhost:3001/years/2019/')
-    //         .then(res => {
-    //             return res.json();
-    //         })
-    //         .then(data => {
-    //             console.log(data);
-    //             console.log(data.weeks[1].drivers)
-    //         })
-    // }, []);
 
     useEffect(() => {
         if (uploadComplete) {
@@ -27,19 +15,16 @@ export default function UploadPage() {
                 setUploadComplete(false);
             }, 2000);
         }
-    }, [uploadComplete])
 
-    useEffect(() => {
         if (loading) {
             setTimeout(() => {
                 setLoading(false);
                 setUploadComplete(true);
             }, 3000);
         }
-    }, [loading])
+    }, [uploadComplete, loading])
 
     const resetUploadPage = () => {
-        //TODO LOADING CIRCLE TIMEOUT TO UPLOAD COMPLETE CONFIRMATION
         setLoading(true);
         setCanClick(true);
         setFileName("");
@@ -47,15 +32,11 @@ export default function UploadPage() {
     }
 
     const readUploadFile = (e) => {
-        const fileReader = new FileReader();
-        console.log(e.target.value);
-
         var file = e.target.value;
         var temp = file.lastIndexOf("\\");
         if (temp >= 0) {
             file = file.substring(temp + 1);
         }
-
         setFileName(file);
         setCanClick(false);
         e.target.value = "";
