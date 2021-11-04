@@ -3,8 +3,14 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import { Button, Grid, Card, Box } from "@material-ui/core";
-import TextField from '@mui/material/TextField';
+import { Button, Grid, Card } from "@material-ui/core";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 export default function CoachingPage() {
     const [year, setYear] = useState('');
@@ -14,6 +20,11 @@ export default function CoachingPage() {
     const [driver, setDriver] = useState('');
     const [canClick, setCanClick] = useState(true);
     const [driverData, setDriverData] = useState({})
+    const [displayData, setDisplayData] = useState([]);
+    const [overallCard, setOverallCard] = useState([]);
+    const [safetyCard, setSafetyCard] = useState([]);
+    const [keyAreaCard, setKeyAreaCard] = useState([]);
+    const [dataStatCard, setDataStatCard] = useState([]);
 
     const weeks2019 = [1, 2, 3];
     const weeks2020 = [4, 5, 6, 7];
@@ -41,50 +52,91 @@ export default function CoachingPage() {
 
         if (year === '2019') {
             if (event.target.value === 1) {
-                setDriverList(['19.1.1', '19.1.2', '19.1.3'])
+                setDriverList(['Driver1', 'Driver2', 'Driver3'])
             }
             else if (event.target.value === 2) {
-                setDriverList(['19.2.1', '19.2.2', '19.2.3'])
+                setDriverList(['Driver4', 'Driver5', 'Driver6'])
             }
             else if (event.target.value === 3) {
-                setDriverList(['19.3.1', '19.3.2', '19.3.3'])
+                setDriverList(['Driver7', 'Driver8', 'Driver9'])
             }
         }
         else if (year === '2020') {
             if (event.target.value === 4) {
-                setDriverList(['20.4.1', '20.4.2', '20.4.3'])
+                setDriverList(['Driver10', 'Driver11', 'Driver12'])
             }
             else if (event.target.value === 5) {
-                setDriverList(['20.5.1', '20.5.2', '20.5.3'])
+                setDriverList(['Driver13', 'Driver14', 'Driver15'])
             }
             else if (event.target.value === 6) {
-                setDriverList(['20.6.1', '20.6.2', '20.6.3'])
+                setDriverList(['Driver16', 'Driver17', 'Driver18'])
             }
             else if (event.target.value === 7) {
-                setDriverList(['20.7.1', '20.7.2', '20.7.3'])
+                setDriverList(['Driver19', 'Driver20', 'Driver21'])
             }
         }
         else {
             if (event.target.value === 8) {
-                setDriverList(['21.8.1', '21.8.2', '21.8.3'])
+                setDriverList(['Driver22', 'Driver23', 'Driver24'])
             }
             else if (event.target.value === 9) {
-                setDriverList(['21.9.1', '21.9.2', '21.9.3'])
+                setDriverList(['Driver25', 'Driver26', 'Driver27'])
             }
             else if (event.target.value === 10) {
-                setDriverList(['21.10.1', '21.10.2', '21.10.3'])
+                setDriverList(['Driver28', 'Driver29', 'Driver30'])
             }
             else if (event.target.value === 11) {
-                setDriverList(['21.11.1', '21.11.2', '21.11.3'])
+                setDriverList(['Driver31', 'Driver32', 'Driver33'])
             }
             else if (event.target.value === 12) {
-                setDriverList(['21.12.1', '21.12.2', '21.12.3'])
+                setDriverList(['Driver34', 'Driver35', 'Driver36'])
             }
         }
     };
+    // const [overallCard, setOverallCard] = useState([]);
+    // const [safetyCard, setSafetyCard] = useState([]);
+    // const [keyAreaCard, setKeyAreaCard] = useState([]);
+    // const [dataStatCard, setDataStatCard] = useState([]);
+
 
     useEffect(() => {
-        console.log(driverData);
+        console.log(displayData)
+
+        if (displayData.length !== 0) {
+            for (let i = 1; i < 4; i++) {
+                overallCard[i-1] = displayData[i];
+            }
+            console.log(overallCard);
+            setOverallCard([...overallCard]);
+    
+            safetyCard[0] = displayData[2];
+            for (let i = 4; i < displayData.length; i++) {
+                safetyCard[i-3] = displayData[i];
+            }
+            console.log(safetyCard);
+            setSafetyCard([...safetyCard])
+        }
+        
+        // for (let i = 1; i < 4; i++) {
+        //     overallCard[i-1] = displayData[i];
+        // }
+        // console.log(overallCard);
+        // setOverallCard([...overallCard]);
+
+        // safetyCard[0] = displayData[2];
+        // for (let i = 4; i < displayData.length; i++) {
+        //     safetyCard[i-3] = displayData[i];
+        // }
+        // console.log(safetyCard);
+        // setSafetyCard([...safetyCard])
+        //TODO SETKEYAREAFOCUSCARD AND DATAANDSTATCARD
+
+    }, [displayData])
+
+    useEffect(() => {
+        const temp = Object.entries(driverData);
+        temp.splice(0, 1);
+        setDisplayData(temp);
     }, [driverData])
 
     const getDriverFromDB = (driverID) => {
@@ -100,10 +152,7 @@ export default function CoachingPage() {
     }
 
     const showData = () => {
-        const dID = year + '.' + week.toString() + '.' + driver;
-
-        getDriverFromDB(dID);
-
+        getDriverFromDB(driver);
         setDriver('');
         setYear('');
         setWeek('');
@@ -156,13 +205,11 @@ export default function CoachingPage() {
                     </FormControl>
                 }
 
-                <br/>
-
                 {canClick ? 
                     <Button 
                         disabled={true} 
                         variant="contained" 
-                        style={{ marginLeft: 110, backgroundColor: '#79719880', color: 'white', marginTop: 15, width: '344px', height: '44px' }} 
+                        style={{ backgroundColor: '#79719880', color: 'white', marginTop: 20, width: '144px', height: '35px' }} 
                         disableElevation
                     >
                         Submit
@@ -173,7 +220,7 @@ export default function CoachingPage() {
                     <Button 
                         disabled={false} 
                         variant="contained" 
-                        style={{ marginLeft: 110, backgroundColor: '#797198', color: 'white', marginTop: 15, width: '344px', height: '44px' }} 
+                        style={{ backgroundColor: '#797198', color: 'white', marginTop: 20, width: '144px', height: '35px' }} 
                         disableElevation 
                         component="label"
                         onClick={showData}
@@ -181,6 +228,165 @@ export default function CoachingPage() {
                         Submit
                     </Button>
                 }
+
+                <br/>
+
+                {displayData.length !== 0 ?
+                <>
+
+                    <Grid container style={{marginTop: 40}}>
+                        <Grid item xs={12}>
+                            <Grid container justifyContent="center" spacing={3} >
+                                <Grid item>
+                                    <Card style={{ height: '100%', width: '100%'}}>
+                                        <TableContainer component={Paper} style={{ width: 400, height:500}}>
+                                            <Table aria-label="simple table">
+                                                <TableBody>
+                                                    {displayData.map((x) => (
+                                                        <TableRow
+                                                            key={x[0]}
+                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                        >
+                                                        <TableCell component="th" scope="row">
+                                                            {x[0]}
+                                                        </TableCell>
+                                                        <TableCell align="right">{x[1]}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card style={{ height: '100%', width: '100%' }}>
+                                        <TableContainer component={Paper} style={{ width: 400, height:500}}>
+                                            <Table aria-label="simple table">
+                                                <TableBody>
+                                                    {overallCard.map((x) => (
+                                                        <TableRow
+                                                            key={x[0]}
+                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                        >
+                                                        <TableCell component="th" scope="row">
+                                                            {x[0]}
+                                                        </TableCell>
+                                                        <TableCell align="right">{x[1]}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card style={{ height: '100%', width: '100%'}}>
+                                        <TableContainer component={Paper} style={{ width: 400, height:500}}>
+                                            <Table aria-label="simple table">
+                                                <TableBody>
+                                                    {safetyCard.map((x) => (
+                                                        <TableRow
+                                                            key={x[0]}
+                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                        >
+                                                        <TableCell component="th" scope="row">
+                                                            {x[0]}
+                                                        </TableCell>
+                                                        <TableCell align="right">{x[1]}</TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </Card>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    
+
+{/* 
+
+                    <TableContainer component={Paper} style={{ width: 400, height:500}}>
+                        <Table aria-label="simple table">
+                            <TableBody>
+                                {displayData.map((x) => (
+                                    <TableRow
+                                        key={x[0]}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                    <TableCell component="th" scope="row">
+                                        {x[0]}
+                                    </TableCell>
+                                    <TableCell align="right">{x[1]}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+
+                    <br/>
+
+                    <TableContainer component={Paper} style={{ width: 400, height:500}}>
+                        <Table aria-label="simple table">
+                            <TableBody>
+                                {overallCard.map((x) => (
+                                    <TableRow
+                                        key={x[0]}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                    <TableCell component="th" scope="row">
+                                        {x[0]}
+                                    </TableCell>
+                                    <TableCell align="right">{x[1]}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    
+                    <TableContainer component={Paper} style={{ width: 400, height:500}}>
+                        <Table aria-label="simple table">
+                            <TableBody>
+                                {safetyCard.map((x) => (
+                                    <TableRow
+                                        key={x[0]}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                    <TableCell component="th" scope="row">
+                                        {x[0]}
+                                    </TableCell>
+                                    <TableCell align="right">{x[1]}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer> */}
+                </>
+
+                : null
+                }
+
+                {/* {overallCard.length !== 0 ?
+                    <TableContainer component={Paper} style={{ width: 400, height:500}}>
+                        <Table aria-label="simple table">
+                            <TableBody>
+                                {overallCard.map((x) => (
+                                    <TableRow
+                                        key={x[0]}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                    <TableCell component="th" scope="row">
+                                        {x[0]}
+                                    </TableCell>
+                                    <TableCell align="right">{x[1]}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    : null
+                } */}
             </Grid>
       </>
     )
