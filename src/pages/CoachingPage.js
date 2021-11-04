@@ -93,11 +93,6 @@ export default function CoachingPage() {
             }
         }
     };
-    // const [overallCard, setOverallCard] = useState([]);
-    // const [safetyCard, setSafetyCard] = useState([]);
-    // const [keyAreaCard, setKeyAreaCard] = useState([]);
-    // const [dataStatCard, setDataStatCard] = useState([]);
-
 
     useEffect(() => {
         console.log(displayData)
@@ -115,22 +110,8 @@ export default function CoachingPage() {
             }
             console.log(safetyCard);
             setSafetyCard([...safetyCard])
+            //TODO SETKEYAREAFOCUSCARD AND DATAANDSTATCARD
         }
-        
-        // for (let i = 1; i < 4; i++) {
-        //     overallCard[i-1] = displayData[i];
-        // }
-        // console.log(overallCard);
-        // setOverallCard([...overallCard]);
-
-        // safetyCard[0] = displayData[2];
-        // for (let i = 4; i < displayData.length; i++) {
-        //     safetyCard[i-3] = displayData[i];
-        // }
-        // console.log(safetyCard);
-        // setSafetyCard([...safetyCard])
-        //TODO SETKEYAREAFOCUSCARD AND DATAANDSTATCARD
-
     }, [displayData])
 
     useEffect(() => {
@@ -239,6 +220,7 @@ export default function CoachingPage() {
                             <Grid container justifyContent="center" spacing={3} >
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
+                                        <h1>All Driver Data</h1>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 <TableBody>
@@ -260,6 +242,7 @@ export default function CoachingPage() {
                                 </Grid>
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%' }}>
+                                        <h1>Overall Score Card</h1>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 <TableBody>
@@ -281,6 +264,7 @@ export default function CoachingPage() {
                                 </Grid>
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
+                                        <h1>Safety Card</h1>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 <TableBody>
@@ -303,90 +287,9 @@ export default function CoachingPage() {
                             </Grid>
                         </Grid>
                     </Grid>
-                    
-
-{/* 
-
-                    <TableContainer component={Paper} style={{ width: 400, height:500}}>
-                        <Table aria-label="simple table">
-                            <TableBody>
-                                {displayData.map((x) => (
-                                    <TableRow
-                                        key={x[0]}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                    <TableCell component="th" scope="row">
-                                        {x[0]}
-                                    </TableCell>
-                                    <TableCell align="right">{x[1]}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-
-                    <br/>
-
-                    <TableContainer component={Paper} style={{ width: 400, height:500}}>
-                        <Table aria-label="simple table">
-                            <TableBody>
-                                {overallCard.map((x) => (
-                                    <TableRow
-                                        key={x[0]}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                    <TableCell component="th" scope="row">
-                                        {x[0]}
-                                    </TableCell>
-                                    <TableCell align="right">{x[1]}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                    
-                    <TableContainer component={Paper} style={{ width: 400, height:500}}>
-                        <Table aria-label="simple table">
-                            <TableBody>
-                                {safetyCard.map((x) => (
-                                    <TableRow
-                                        key={x[0]}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                    <TableCell component="th" scope="row">
-                                        {x[0]}
-                                    </TableCell>
-                                    <TableCell align="right">{x[1]}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer> */}
                 </>
-
                 : null
                 }
-
-                {/* {overallCard.length !== 0 ?
-                    <TableContainer component={Paper} style={{ width: 400, height:500}}>
-                        <Table aria-label="simple table">
-                            <TableBody>
-                                {overallCard.map((x) => (
-                                    <TableRow
-                                        key={x[0]}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                    <TableCell component="th" scope="row">
-                                        {x[0]}
-                                    </TableCell>
-                                    <TableCell align="right">{x[1]}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                    : null
-                } */}
             </Grid>
       </>
     )
