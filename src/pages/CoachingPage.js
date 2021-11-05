@@ -112,6 +112,11 @@ export default function CoachingPage() {
         const temp = Object.entries(driverData);
         temp.splice(0, 1);
         setDisplayData(temp);
+        setFromDate('');
+        setToDate('');
+        setDataPoints([]);
+        setMakingGraph(true);
+        setStatToMeasure('');
     }, [driverData])
 
     const getDriverFromDB = (driverID) => {
