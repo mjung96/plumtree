@@ -11,6 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 export default function CoachingPage() {
     const [year, setYear] = useState('');
@@ -19,6 +20,7 @@ export default function CoachingPage() {
     const [driverList, setDriverList] = useState([]);
     const [driver, setDriver] = useState('');
     const [canClick, setCanClick] = useState(true);
+    const [clickGraph, setClickGraph] = useState(true);
     const [driverData, setDriverData] = useState({})
     const [displayData, setDisplayData] = useState([]);
     const [overallCard, setOverallCard] = useState([]);
@@ -26,14 +28,33 @@ export default function CoachingPage() {
     const [qualityCard, setQualityCard] = useState([]);
     const [keyAreaCard, setKeyAreaCard] = useState([]);
     const [dataStatCard, setDataStatCard] = useState([]);
+    const [statToMeasure, setStatToMeasure] = useState('');
+    const [dataDateRange, setDataDateRange] = useState([]);
+    const [makingGraph, setMakingGraph] = useState(true);
 
     const weeks2019 = [1, 2, 3];
     const weeks2020 = [4, 5, 6, 7];
     const weeks2021 = [8, 9, 10, 11, 12];
 
+    const data = [
+        {name: 'Page A', uv: 100, pv: 2400, amt: 2400}, 
+        {name: 'Page B', uv: 200, pv: 2400, amt: 2400}, 
+        {name: 'Page C', uv: 400, pv: 2400, amt: 2400},
+        {name: 'Page D', uv: 300, pv: 2400, amt: 2400},
+    ];
+
     const selectDriver = (event) => {
         setDriver(event.target.value);
     };
+
+    const selectStat = (event) => {
+        setStatToMeasure(event.target.value);
+
+    }
+
+    const selectDateRange = (event) => {
+        setDataDateRange(event.target.value);
+    }
 
     const selectYear = (event) => {
         setYear(event.target.value);
@@ -96,31 +117,6 @@ export default function CoachingPage() {
     };
 
     useEffect(() => {
-        if (displayData.length !== 0) {
-            for (let i = 1; i < 4; i++) {
-                overallCard[i-1] = displayData[i];
-            }
-            setOverallCard([...overallCard]);
-    
-            safetyCard[0] = displayData[2];
-            for (let i = 4; i < 7; i++) {
-                safetyCard[i-3] = displayData[i];
-            }
-            setSafetyCard([...safetyCard])
-
-            qualityCard[0] = displayData[3];
-            for (let i = 7; i < displayData.length - 1; i++) {
-                qualityCard[i-6] = displayData[i];
-            }
-            setQualityCard([...qualityCard]);
-
-            setKeyAreaCard(displayData[13][1]);
-
-            //TODO Data and Statistics 
-        }
-    }, [displayData])
-
-    useEffect(() => {
         const temp = Object.entries(driverData);
         temp.splice(0, 1);
         setDisplayData(temp);
@@ -147,10 +143,48 @@ export default function CoachingPage() {
     }
 
     useEffect(() => {
+        if (statToMeasure !== '' && dataDateRange.length !== 0) {
+            setClickGraph(false);
+            //console.log(dataDateRange)
+        }
+    }, [statToMeasure, dataDateRange])
+
+    useEffect(() => {
         if (driver !== '' && year !== '' && week !== '') {
             setCanClick(false);
         }
     }, [driver, year, week])
+
+    //TODO
+    const makeGraph = () => {
+        setMakingGraph(false);
+        console.log("making graph")
+    }
+
+    useEffect(() => {
+        if (displayData.length !== 0) {
+            for (let i = 1; i < 4; i++) {
+                overallCard[i-1] = displayData[i];
+            }
+            setOverallCard([...overallCard]);
+    
+            safetyCard[0] = displayData[2];
+            for (let i = 4; i < 7; i++) {
+                safetyCard[i-3] = displayData[i];
+            }
+            setSafetyCard([...safetyCard])
+
+            qualityCard[0] = displayData[3];
+            for (let i = 7; i < 13; i++) {
+                qualityCard[i-6] = displayData[i];
+            }
+            setQualityCard([...qualityCard]);
+
+            setKeyAreaCard(displayData[13][1]);
+
+            //TODO Data and Statistics 
+        }
+    }, [displayData])
 
     return (
         <>
@@ -352,20 +386,60 @@ export default function CoachingPage() {
                                 </Grid>
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
-                                        <TableContainer component={Paper} style={{ width: 400, height:500}}>
-                                            <Table aria-label="simple table">
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <h2 style={{ marginLeft: 85}}>Data and Statistics</h2>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    <TableRow>
-                                                        <TableCell>TODO</TableCell>
-                                                    </TableRow>
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
+                                        <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
+                                            <InputLabel id="demo-simple-select-standard-label">Statistic</InputLabel>
+                                            <Select value={statToMeasure} onChange={selectStat} label="Statistics">
+                                                <MenuItem value={"FICO"}>FICO</MenuItem>
+                                                <MenuItem value={"POD"}>POD</MenuItem>
+                                                <MenuItem value={"Delivered/Received"}>Delivered/Received</MenuItem>
+                                            </Select>
+                                        </FormControl>
+
+                                        <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
+                                            <InputLabel id="demo-simple-select-standard-label">Date Range</InputLabel>
+                                            <Select value={dataDateRange} onChange={selectDateRange} label="Date Range">
+                                                <MenuItem value={"FICO"}>FICO</MenuItem>
+                                                <MenuItem value={"POD"}>POD</MenuItem>
+                                                <MenuItem value={"Delivered/Received"}>Delivered/Received</MenuItem>
+                                            </Select>
+                                        </FormControl>
+
+                                        {clickGraph ? 
+                                            <Button 
+                                                disabled={true} 
+                                                variant="contained" 
+                                                style={{ backgroundColor: '#79719880', color: 'white', marginTop: 20, marginLeft: 40, marginRight: 15, width: '144px', height: '35px' }} 
+                                                disableElevation
+                                            >
+                                                Submit
+                                            </Button>
+
+                                            :
+
+                                            <Button 
+                                                disabled={false} 
+                                                variant="contained" 
+                                                style={{ backgroundColor: '#797198', color: 'white', marginTop: 20, marginLeft: 40, marginRight: 15, width: '144px', height: '35px' }} 
+                                                disableElevation 
+                                                component="label"
+                                                onClick={makeGraph}
+                                            >
+                                                Submit
+                                            </Button>
+                                        }
+
+                                        {!makingGraph ? 
+                                            <LineChart width={500} height={250} data={data} style={{marginTop: 20, marginRight: 20}}>
+                                                <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                                                <CartesianGrid stroke="#ccc" />
+                                                <XAxis dataKey="name" />
+                                                <YAxis />
+                                            </LineChart>
+
+                                            : null
+                                        }
+
+                                        
                                     </Card>
                                 </Grid>
                             </Grid>
