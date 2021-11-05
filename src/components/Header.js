@@ -32,11 +32,13 @@ export default function Header() {
                                     <ListItem>
                                         <Button>
                                             <NavLink exact to="/upload"><UploadIcon style={{ color: '#797198' }}/></NavLink>
+                                            <NavLink exact to="/upload" style={{ textDecoration: 'none' }}><h6 style={{ color: '#797198' }}>upload</h6></NavLink>
                                         </Button>
                                     </ListItem>
                                     <ListItem>
                                         <Button>
-                                        <NavLink exact to="/coaching"><SpeedIcon style={{ color: '#797198' }}/></NavLink>
+                                            <NavLink exact to="/coaching"><SpeedIcon style={{ color: '#797198' }}/></NavLink>
+                                            <NavLink exact to="/coaching" style={{ textDecoration: 'none' }}><h6 style={{ color: '#797198' }}>coaching</h6></NavLink>
                                         </Button>
                                     </ListItem>
                                 </List>
