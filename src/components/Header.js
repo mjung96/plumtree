@@ -42,7 +42,7 @@ export default function Header() {
                                 </List>
                             </Box>
                         </Drawer>
-
+                        
                         <div>
                             <Button style={{ color: 'red' }}>Log Out</Button>
                         </div>

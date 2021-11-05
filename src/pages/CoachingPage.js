@@ -95,22 +95,21 @@ export default function CoachingPage() {
     };
 
     useEffect(() => {
-        console.log(displayData)
-
         if (displayData.length !== 0) {
             for (let i = 1; i < 4; i++) {
                 overallCard[i-1] = displayData[i];
             }
-            console.log(overallCard);
             setOverallCard([...overallCard]);
     
             safetyCard[0] = displayData[2];
-            for (let i = 4; i < displayData.length; i++) {
+            for (let i = 4; i < displayData.length - 1; i++) {
                 safetyCard[i-3] = displayData[i];
             }
-            console.log(safetyCard);
             setSafetyCard([...safetyCard])
-            //TODO SETKEYAREAFOCUSCARD AND DATAANDSTATCARD
+
+            setKeyAreaCard(displayData[13][1]);
+
+            //TODO Data and Statistics 
         }
     }, [displayData])
 
@@ -220,9 +219,13 @@ export default function CoachingPage() {
                             <Grid container justifyContent="center" spacing={3} >
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
-                                        <h1>All Driver Data</h1>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <h2 style={{ marginLeft: 120}}>All Driver Data</h2>
+                                                    </TableRow>
+                                                </TableHead>
                                                 <TableBody>
                                                     {displayData.map((x) => (
                                                         <TableRow
@@ -242,9 +245,13 @@ export default function CoachingPage() {
                                 </Grid>
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%' }}>
-                                        <h1>Overall Score Card</h1>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <h2 style={{ marginLeft: 90}}>Overall Score Card</h2>
+                                                    </TableRow>
+                                                </TableHead>
                                                 <TableBody>
                                                     {overallCard.map((x) => (
                                                         <TableRow
@@ -264,9 +271,13 @@ export default function CoachingPage() {
                                 </Grid>
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
-                                        <h1>Safety Card</h1>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <h2 style={{ marginLeft: 130}}>Safety Card</h2>
+                                                    </TableRow>
+                                                </TableHead>
                                                 <TableBody>
                                                     {safetyCard.map((x) => (
                                                         <TableRow
@@ -279,6 +290,46 @@ export default function CoachingPage() {
                                                         <TableCell align="right">{x[1]}</TableCell>
                                                         </TableRow>
                                                     ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card style={{ height: '100%', width: '100%'}}>
+                                        <TableContainer component={Paper} style={{ width: 400, height:500}}>
+                                            <Table aria-label="simple table">
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <h2 style={{ marginLeft: 85}}>Key Area of Focus</h2>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {keyAreaCard.map((x) => (
+                                                        <>
+                                                            <TableRow>
+                                                                <TableCell>{x}</TableCell>
+                                                            </TableRow>
+                                                        </>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </Card>
+                                </Grid>
+                                <Grid item>
+                                    <Card style={{ height: '100%', width: '100%'}}>
+                                        <TableContainer component={Paper} style={{ width: 400, height:500}}>
+                                            <Table aria-label="simple table">
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <h2 style={{ marginLeft: 85}}>Data and Statistics</h2>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    <TableRow>
+                                                        <TableCell>TODO</TableCell>
+                                                    </TableRow>
                                                 </TableBody>
                                             </Table>
                                         </TableContainer>

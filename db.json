@@ -14,7 +14,10 @@
       "contact_compliance": 100,
       "scan_compliance": 99.77,
       "ada": 0,
-      "did_not_rec": 4
+      "did_not_rec": 4,
+      "key_area_of_focus": [
+        "Work on ____, driver1"
+      ]
     },
     {
       "id": "Driver2",
@@ -30,7 +33,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver2"
+      ]
     },
     {
       "id": "Driver3",
@@ -46,7 +52,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver3"
+      ]
     },
     {
       "id": "Driver4",
@@ -62,7 +71,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver4"
+      ]
     },
     {
       "id": "Driver5",
@@ -78,7 +90,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver5"
+      ]
     },
     {
       "id": "Driver6",
@@ -94,7 +109,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver6"
+      ]
     },
     {
       "id": "Driver7",
@@ -110,7 +128,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver7"
+      ]
     },
     {
       "id": "Driver8",
@@ -126,7 +147,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver8"
+      ]
     },
     {
       "id": "Driver9",
@@ -142,7 +166,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver9"
+      ]
     },
     {
       "id": "Driver10",
@@ -158,7 +185,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver10"
+      ]
     },
     {
       "id": "Driver11",
@@ -174,7 +204,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver11"
+      ]
     },
     {
       "id": "Driver12",
@@ -190,7 +223,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver12"
+      ]
     },
     {
       "id": "Driver13",
@@ -206,7 +242,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver13"
+      ]
     },
     {
       "id": "Driver14",
@@ -222,7 +261,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver14"
+      ]
     },
     {
       "id": "Driver15",
@@ -238,7 +280,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver15"
+      ]
     },
     {
       "id": "Driver16",
@@ -254,7 +299,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver16"
+      ]
     },
     {
       "id": "Driver17",
@@ -270,7 +318,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver17"
+      ]
     },
     {
       "id": "Driver18",
@@ -286,7 +337,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver18"
+      ]
     },
     {
       "id": "Driver19",
@@ -302,7 +356,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver19"
+      ]
     },
     {
       "id": "Driver20",
@@ -318,7 +375,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver20"
+      ]
     },
     {
       "id": "Driver21",
@@ -334,7 +394,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver21"
+      ]
     },
     {
       "id": "Driver22",
@@ -350,7 +413,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver22"
+      ]
     },
     {
       "id": "Driver23",
@@ -366,7 +432,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver23"
+      ]
     },
     {
       "id": "Driver24",
@@ -382,7 +451,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver24"
+      ]
     },
     {
       "id": "Driver25",
@@ -398,7 +470,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver25"
+      ]
     },
     {
       "id": "Driver26",
@@ -414,7 +489,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver26"
+      ]
     },
     {
       "id": "Driver27",
@@ -430,7 +508,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver27"
+      ]
     },
     {
       "id": "Driver28",
@@ -446,7 +527,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver28"
+      ]
     },
     {
       "id": "Driver29",
@@ -462,7 +546,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver29"
+      ]
     },
     {
       "id": "Driver30",
@@ -478,7 +565,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver30"
+      ]
     },
     {
       "id": "Driver31",
@@ -494,7 +584,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver31"
+      ]
     },
     {
       "id": "Driver32",
@@ -510,7 +603,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver32"
+      ]
     },
     {
       "id": "Driver33",
@@ -526,7 +622,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver33"
+      ]
     },
     {
       "id": "Driver34",
@@ -542,7 +641,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver34"
+      ]
     },
     {
       "id": "Drive35",
@@ -558,7 +660,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver35"
+      ]
     },
     {
       "id": "Driver36",
@@ -574,7 +679,10 @@
       "contact_compliance": 97,
       "scan_compliance": 98.22,
       "ada": 1,
-      "did_not_rec": 2
+      "did_not_rec": 2,
+      "key_area_of_focus": [
+        "Work on ____, driver36"
+      ]
     }
   ]
 }
