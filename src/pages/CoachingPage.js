@@ -33,6 +33,7 @@ export default function CoachingPage() {
     const [fromDateRange, setFromDateRange] = useState([]);
     const [toDateRange, setToDateRange] = useState([]);
     const [makingGraph, setMakingGraph] = useState(true);
+    const [dataPoints, setDataPoints] = useState([]);
     const [data, setData] = useState([]);
 
     const weeks2019 = [1, 2, 3];
@@ -152,37 +153,19 @@ export default function CoachingPage() {
     const selectToRange = (event) => {
         setToDate(event.target.value);
     }
-
-    // let data = [
-    //     // {name: 'Week 1', uv: 100, pv: 2400, amt: 2400}, 
-    //     // {name: 'Week 2', uv: 200, pv: 2400, amt: 2400}, 
-    //     // {name: 'Week 3', uv: 400, pv: 2400, amt: 2400},
-    //     // {name: 'Week 4', uv: 300, pv: 2400, amt: 2400},
-    // ];
-
     const makeGraph = () => {
         setMakingGraph(false);
-        // console.log("making graph")
-        // console.log(fromDate);
-        // console.log(toDate);
-
         let range = toDate - fromDate;
-
-        console.log(range);
-
         let temp = [];
+
+        console.log(dataPoints);
 
         for (let i = 0; i < range + 1; i++) {
             let tempname = 'Week ' + (fromDate + i).toString();
 
-            temp[i] = {name: tempname, uv: 100 + i*50, pv: 2400, amt:2400}
+            temp[i] = {name: tempname, uv: dataPoints[i], pv: 2400, amt:2400}
         }
-
-        console.log(temp)
-
         setData(temp);
-
-
     }
 
     useEffect(() => {
@@ -207,21 +190,27 @@ export default function CoachingPage() {
     useEffect(() => {
         if (statToMeasure === "FICO") {
             for (let i = 0; i < displayData[14][1].length; i++) {
-                fromDateRange[i] = displayData[14][1][i][0]
+                fromDateRange[i] = displayData[14][1][i][0];
+                dataPoints[i] = displayData[14][1][i][1];
             }
             setFromDateRange([...fromDateRange]);
+            setDataPoints([...dataPoints]);
         }
         else if (statToMeasure === "POD") {
             for (let i = 0; i < displayData[15][1].length; i++) {
-                fromDateRange[i] = displayData[15][1][i][0]
+                fromDateRange[i] = displayData[15][1][i][0];
+                dataPoints[i] = displayData[15][1][i][1];
             }
             setFromDateRange([...fromDateRange]);
+            setDataPoints([...dataPoints]);
         }
         else if (statToMeasure === "Delivered/Received") {
             for (let i = 0; i < displayData[16][1].length; i++) {
-                fromDateRange[i] = displayData[16][1][i][0]
+                fromDateRange[i] = displayData[16][1][i][0];
+                dataPoints[i] = displayData[16][1][i][1];
             }
             setFromDateRange([...fromDateRange]);
+            setDataPoints([...dataPoints]);
         }
 
     }, [statToMeasure])
