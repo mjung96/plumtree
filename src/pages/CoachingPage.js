@@ -27,21 +27,17 @@ export default function CoachingPage() {
     const [safetyCard, setSafetyCard] = useState([]);
     const [qualityCard, setQualityCard] = useState([]);
     const [keyAreaCard, setKeyAreaCard] = useState([]);
-    const [dataStatCard, setDataStatCard] = useState([]);
     const [statToMeasure, setStatToMeasure] = useState('');
-    const [dataDateRange, setDataDateRange] = useState([]);
+    const [fromDate, setFromDate] = useState();
+    const [toDate, setToDate] = useState();
+    const [fromDateRange, setFromDateRange] = useState([]);
+    const [toDateRange, setToDateRange] = useState([]);
     const [makingGraph, setMakingGraph] = useState(true);
+    const [data, setData] = useState([]);
 
     const weeks2019 = [1, 2, 3];
     const weeks2020 = [4, 5, 6, 7];
     const weeks2021 = [8, 9, 10, 11, 12];
-
-    const data = [
-        {name: 'Page A', uv: 100, pv: 2400, amt: 2400}, 
-        {name: 'Page B', uv: 200, pv: 2400, amt: 2400}, 
-        {name: 'Page C', uv: 400, pv: 2400, amt: 2400},
-        {name: 'Page D', uv: 300, pv: 2400, amt: 2400},
-    ];
 
     const selectDriver = (event) => {
         setDriver(event.target.value);
@@ -49,11 +45,6 @@ export default function CoachingPage() {
 
     const selectStat = (event) => {
         setStatToMeasure(event.target.value);
-
-    }
-
-    const selectDateRange = (event) => {
-        setDataDateRange(event.target.value);
     }
 
     const selectYear = (event) => {
@@ -143,23 +134,97 @@ export default function CoachingPage() {
     }
 
     useEffect(() => {
-        if (statToMeasure !== '' && dataDateRange.length !== 0) {
-            setClickGraph(false);
-            //console.log(dataDateRange)
-        }
-    }, [statToMeasure, dataDateRange])
-
-    useEffect(() => {
         if (driver !== '' && year !== '' && week !== '') {
             setCanClick(false);
         }
     }, [driver, year, week])
 
+
+
+
+
     //TODO
+
+    const selectFromRange = (event) => {
+        setFromDate(event.target.value);
+    }
+
+    const selectToRange = (event) => {
+        setToDate(event.target.value);
+    }
+
+    // let data = [
+    //     // {name: 'Week 1', uv: 100, pv: 2400, amt: 2400}, 
+    //     // {name: 'Week 2', uv: 200, pv: 2400, amt: 2400}, 
+    //     // {name: 'Week 3', uv: 400, pv: 2400, amt: 2400},
+    //     // {name: 'Week 4', uv: 300, pv: 2400, amt: 2400},
+    // ];
+
     const makeGraph = () => {
         setMakingGraph(false);
-        console.log("making graph")
+        // console.log("making graph")
+        // console.log(fromDate);
+        // console.log(toDate);
+
+        let range = toDate - fromDate;
+
+        console.log(range);
+
+        let temp = [];
+
+        for (let i = 0; i < range + 1; i++) {
+            let tempname = 'Week ' + (fromDate + i).toString();
+
+            temp[i] = {name: tempname, uv: 100 + i*50, pv: 2400, amt:2400}
+        }
+
+        console.log(temp)
+
+        setData(temp);
+
+
     }
+
+    useEffect(() => {
+        toDateRange.splice(0, toDateRange.length);
+
+        setToDate('');
+
+        for (let i = 0; i < fromDateRange.length; i++) {
+            if (fromDateRange[i] > fromDate) {
+                toDateRange.push(fromDateRange[i]);
+            }
+        }
+        setToDateRange([...toDateRange]);
+    }, [fromDate])
+
+    useEffect(() => {
+        if (toDate > 0) {
+            setClickGraph(false);
+        }
+    }, [toDate])
+
+    useEffect(() => {
+        if (statToMeasure === "FICO") {
+            for (let i = 0; i < displayData[14][1].length; i++) {
+                fromDateRange[i] = displayData[14][1][i][0]
+            }
+            setFromDateRange([...fromDateRange]);
+        }
+        else if (statToMeasure === "POD") {
+            for (let i = 0; i < displayData[15][1].length; i++) {
+                fromDateRange[i] = displayData[15][1][i][0]
+            }
+            setFromDateRange([...fromDateRange]);
+        }
+        else if (statToMeasure === "Delivered/Received") {
+            for (let i = 0; i < displayData[16][1].length; i++) {
+                fromDateRange[i] = displayData[16][1][i][0]
+            }
+            setFromDateRange([...fromDateRange]);
+        }
+
+    }, [statToMeasure])
 
     useEffect(() => {
         if (displayData.length !== 0) {
@@ -181,8 +246,6 @@ export default function CoachingPage() {
             setQualityCard([...qualityCard]);
 
             setKeyAreaCard(displayData[13][1]);
-
-            //TODO Data and Statistics 
         }
     }, [displayData])
 
@@ -254,7 +317,6 @@ export default function CoachingPage() {
 
                 {displayData.length !== 0 ?
                 <>
-
                     <Grid container style={{marginTop: 40}}>
                         <Grid item xs={12}>
                             <Grid container justifyContent="center" spacing={3} >
@@ -395,20 +457,40 @@ export default function CoachingPage() {
                                             </Select>
                                         </FormControl>
 
-                                        <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
-                                            <InputLabel id="demo-simple-select-standard-label">Date Range</InputLabel>
-                                            <Select value={dataDateRange} onChange={selectDateRange} label="Date Range">
-                                                <MenuItem value={"FICO"}>FICO</MenuItem>
-                                                <MenuItem value={"POD"}>POD</MenuItem>
-                                                <MenuItem value={"Delivered/Received"}>Delivered/Received</MenuItem>
-                                            </Select>
-                                        </FormControl>
+                                        {statToMeasure !== '' ?
+                                            <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
+                                                <InputLabel id="demo-simple-select-standard-label">From Date</InputLabel>
+                                                <Select value={fromDate} onChange={selectFromRange} label="From Range">
+                                                    {fromDateRange.map(x => <MenuItem value={x}>{x}</MenuItem>)}
+                                                </Select>
+                                            </FormControl>
+                                            :
+                                            <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
+                                                <InputLabel id="demo-simple-select-standard-label">From Date</InputLabel>
+                                                <Select disabled label="From Range"></Select>
+                                            </FormControl>
+
+                                        }
+
+                                        {fromDate > 0 ?
+                                            <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
+                                                <InputLabel id="demo-simple-select-standard-label">To Date</InputLabel>
+                                                <Select value={toDate} onChange={selectToRange} label="To Range">
+                                                    {toDateRange.map(x => <MenuItem value={x}>{x}</MenuItem>)}
+                                                </Select>
+                                            </FormControl>
+                                            : 
+                                            <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
+                                                <InputLabel id="demo-simple-select-standard-label">To Date</InputLabel>
+                                                <Select disabled label="To Range"></Select>
+                                            </FormControl>
+                                        }
 
                                         {clickGraph ? 
                                             <Button 
                                                 disabled={true} 
                                                 variant="contained" 
-                                                style={{ backgroundColor: '#79719880', color: 'white', marginTop: 20, marginLeft: 40, marginRight: 15, width: '144px', height: '35px' }} 
+                                                style={{ backgroundColor: '#79719880', color: 'white', marginTop: 20, marginLeft: 20, marginRight: 15, width: '144px', height: '35px' }} 
                                                 disableElevation
                                             >
                                                 Submit
@@ -419,7 +501,7 @@ export default function CoachingPage() {
                                             <Button 
                                                 disabled={false} 
                                                 variant="contained" 
-                                                style={{ backgroundColor: '#797198', color: 'white', marginTop: 20, marginLeft: 40, marginRight: 15, width: '144px', height: '35px' }} 
+                                                style={{ backgroundColor: '#797198', color: 'white', marginTop: 20, marginLeft: 20, marginRight: 15, width: '144px', height: '35px' }} 
                                                 disableElevation 
                                                 component="label"
                                                 onClick={makeGraph}
@@ -429,7 +511,7 @@ export default function CoachingPage() {
                                         }
 
                                         {!makingGraph ? 
-                                            <LineChart width={500} height={250} data={data} style={{marginTop: 20, marginRight: 20}}>
+                                            <LineChart width={600} height={300} data={data} style={{marginTop: 20, marginRight: 20}}>
                                                 <Line type="monotone" dataKey="uv" stroke="#8884d8" />
                                                 <CartesianGrid stroke="#ccc" />
                                                 <XAxis dataKey="name" />
@@ -438,8 +520,6 @@ export default function CoachingPage() {
 
                                             : null
                                         }
-
-                                        
                                     </Card>
                                 </Grid>
                             </Grid>
