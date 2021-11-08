@@ -28,8 +28,8 @@ export default function CoachingPage() {
     const [qualityCard, setQualityCard] = useState([]);
     const [keyAreaCard, setKeyAreaCard] = useState([]);
     const [statToMeasure, setStatToMeasure] = useState('');
-    const [fromDate, setFromDate] = useState();
-    const [toDate, setToDate] = useState();
+    const [fromDate, setFromDate] = useState('');
+    const [toDate, setToDate] = useState('');
     const [fromDateRange, setFromDateRange] = useState([]);
     const [toDateRange, setToDateRange] = useState([]);
     const [makingGraph, setMakingGraph] = useState(true);
@@ -112,11 +112,14 @@ export default function CoachingPage() {
         const temp = Object.entries(driverData);
         temp.splice(0, 1);
         setDisplayData(temp);
-        setFromDate('');
-        setToDate('');
         setDataPoints([]);
         setMakingGraph(true);
         setStatToMeasure('');
+        setFromDate('');
+        setToDate('');
+        setFromDateRange([]);
+        setToDateRange([]);
+        setData([]);
     }, [driverData])
 
     const getDriverFromDB = (driverID) => {
@@ -193,6 +196,13 @@ export default function CoachingPage() {
     }, [toDate])
 
     useEffect(() => {
+
+        setFromDateRange([]);
+        setToDateRange([]);
+        setFromDate('');
+        setToDate('');
+        setClickGraph(true);
+
         if (statToMeasure === "FICO") {
             for (let i = 0; i < displayData[14][1].length; i++) {
                 fromDateRange[i] = displayData[14][1][i][0];
@@ -314,7 +324,7 @@ export default function CoachingPage() {
                     <Grid container style={{marginTop: 40}}>
                         <Grid item xs={12}>
                             <Grid container justifyContent="center" spacing={3} >
-                                <Grid item>
+                                {/* <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
@@ -339,13 +349,14 @@ export default function CoachingPage() {
                                             </Table>
                                         </TableContainer>
                                     </Card>
-                                </Grid>
+                                </Grid> */}
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%' }}>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 <TableHead>
                                                     <TableRow>
+                                                        <h2 style={{ marginLeft: 150}}>{displayData[0][1]}'s</h2>
                                                         <h2 style={{ marginLeft: 90}}>Overall Score Card</h2>
                                                     </TableRow>
                                                 </TableHead>
