@@ -448,8 +448,8 @@ export default function CoachingPage() {
                                     <Card style={{ height: '100%', width: '100%' }}>
                                         <Grid container spacing={12}>
                                             <Grid item>
-                                                <h2 style={{ marginLeft: 150}}>{displayData[0][1]}</h2>
-                                                <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3>
+                                                <h2 style={{ marginLeft: 25}}>{displayData[0][1]}: {displayData[1][1]}</h2>
+                                                {/* <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3> */}
                                             </Grid>
                                             {/* <Grid item>
                                                 <RadialBarChart startAngle={180} endAngle={0} width={200} height={250} barSize={7} data={safetyBarData}>  
@@ -484,11 +484,8 @@ export default function CoachingPage() {
 
                                         {/* <h2 style={{ marginLeft: 150}}>{displayData[0][1]}</h2> 
                                         <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3> */}
-                                            <RadialBarChart startAngle={180} endAngle={0} width={400} height={150} barSize={7} cx='50%' cy='25%' data={safetyBarData}>  
+                                            <RadialBarChart margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='25%' data={safetyBarData}>  
                                                 <RadialBar
-                                                    
-                                                    minAngle={15}
-                                                    label={{ position: 'insideStart' }}
                                                     background
                                                     clockWise
                                                     dataKey="uv"
@@ -496,12 +493,8 @@ export default function CoachingPage() {
                                             </RadialBarChart>
                                             <h4 style={{marginLeft: 120}}>Safety Score: {displayData[2][1]}</h4>
 
-                                            <RadialBarChart startAngle={180} endAngle={0} width={400} height={150} barSize={7} cx='50%' cy='22%' data={qualityBarData}>  
+                                            <RadialBarChart margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='22%' data={qualityBarData}>  
                                                 <RadialBar
-                                                    width={126}
-                                                    height={63}
-                                                    minAngle={15}
-                                                    label={{ position: 'insideStart' }}
                                                     background
                                                     clockWise
                                                     dataKey="uv"
@@ -538,7 +531,7 @@ export default function CoachingPage() {
                                 <Grid item>
                                     {/* <Card style={{ height: '280px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
-                                        <h2 style={{ marginLeft: 105}}>Safety: {displayData[2][1]}</h2>
+                                        <h2 style={{ marginLeft: 25}}>Safety: {displayData[2][1]}</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 {/* <TableHead>
@@ -570,7 +563,7 @@ export default function CoachingPage() {
                                 <Grid item>
                                     {/* <Card style={{ height: '440px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
-                                        <h2 style={{ marginLeft: 100}}>Quality: {displayData[3][1]}</h2>
+                                        <h2 style={{ marginLeft: 25}}>Quality: {displayData[3][1]}</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 {/* <TableHead>
@@ -602,7 +595,7 @@ export default function CoachingPage() {
                                 <Grid item>
                                     {/* <Card style={{ height: '120px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
-                                        <h2 style={{ marginLeft: 85}}>Key Area of Focus</h2>
+                                        <h2 style={{ marginLeft: 25}}>Key Area of Focus</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 {/* <TableHead>
@@ -626,7 +619,7 @@ export default function CoachingPage() {
                                 <Grid item>
                                     <Card style={{ height: '615px', width: '400px'}}>
                                     {/* <Card style={{ height: '100%', width: '400px'}}> */}
-                                        <h2 style={{marginLeft: 100}}>Data and Statistics</h2>
+                                        <h2 style={{marginLeft: 25}}>Data and Statistics</h2>
                                         <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
                                             <InputLabel id="demo-simple-select-standard-label">Statistic</InputLabel>
                                             <Select value={statToMeasure} onChange={selectStat} label="Statistics">
