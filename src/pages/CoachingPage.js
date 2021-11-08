@@ -465,13 +465,13 @@ export default function CoachingPage() {
                             <Grid container justifyContent="center" spacing={3} >
                                 <Grid item>
                                     <Card style={{ height: '529px', width: '100%' }}>
-                                        <h2 style={{ marginLeft: 5, display: 'inline' }}>{displayData[0][1]}: </h2>
-                                        <h2 style={{display: 'inline', color: overallColor}}>{displayData[1][1]}</h2>
-                                        <br/><br/><br/><br/><br/>
+                                        <h1 style={{ marginLeft: 5, display: 'inline' }}>{displayData[0][1]}: </h1>
+                                        <h1 style={{display: 'inline', color: overallColor}}>{displayData[1][1]}</h1>
+                                        <br/><br/><br/><br/>
 
-                                        <h4 style={{marginLeft: 120, display: 'inline' }}>Safety Score: </h4>
+                                        <h4 style={{marginLeft: 100, display: 'inline' }}>Safety Score: </h4>
                                         <h4 style={{display: 'inline', color: safetyColor}}>{displayData[2][1]}</h4>
-                                        <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='29%' data={safetyBarData}>  
+                                        <RadialBarChart margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={200} barSize={7} cx='50%' cy='29%' data={safetyBarData}>  
                                             <RadialBar
                                                 background
                                                 clockWise
@@ -479,9 +479,9 @@ export default function CoachingPage() {
                                             /> 
                                         </RadialBarChart>
 
-                                        <h4 style={{marginLeft: 120, display: 'inline' }}>Quality Score: </h4>
+                                        <h4 style={{marginLeft: 100, display: 'inline' }}>Quality Score: </h4>
                                         <h4 style={{display: 'inline', color: qualityColor}}>{displayData[3][1]}</h4>
-                                        <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='29%' data={qualityBarData}>  
+                                        <RadialBarChart margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={350} barSize={7} cx='50%' cy='29%' data={qualityBarData}>  
                                             <RadialBar
                                                 background
                                                 clockWise
