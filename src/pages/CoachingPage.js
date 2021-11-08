@@ -11,7 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
 
 export default function CoachingPage() {
     const [year, setYear] = useState('');
@@ -35,6 +35,83 @@ export default function CoachingPage() {
     const [makingGraph, setMakingGraph] = useState(true);
     const [dataPoints, setDataPoints] = useState([]);
     const [data, setData] = useState([]);
+    const [safetyBarData, setSafetyBarData] = useState([]);
+    const [qualityBarData, setQualityBarData] = useState([]);
+
+    const FantasticPlus = [
+        {
+          name: '18-24',
+          uv: 21.47,
+          pv: 2400,
+          fill: '#ffffff',
+        },
+        {
+          name: '25-29',
+          uv: 26.69,
+          pv: 4567,
+          fill: '#0095FF',
+        }
+    ];
+
+    const Fantastic = [
+        {
+          name: '18-24',
+          uv: 31.47,
+          pv: 2400,
+          fill: '#ffffff',
+        },
+        {
+          name: '25-29',
+          uv: 26.69,
+          pv: 4567,
+          fill: '#0070C0',
+        }
+    ];
+
+    const Good = [
+        {
+          name: '18-24',
+          uv: 38.47,
+          pv: 2400,
+          fill: '#ffffff',
+        },
+        {
+          name: '25-29',
+          uv: 26.69,
+          pv: 4567,
+          fill: '#00AF50',
+        }
+    ];
+
+    const Fair = [
+        {
+          name: '18-24',
+          uv: 52.00,
+          pv: 2400,
+          fill: '#ffffff',
+        },
+        {
+          name: '25-29',
+          uv: 26.69,
+          pv: 4567,
+          fill: '#ED7D31',
+        }
+    ];
+
+    const Poor = [
+        {
+          name: '18-24',
+          uv: 100.00,
+          pv: 2400,
+          fill: '#ffffff',
+        },
+        {
+          name: '25-29',
+          uv: 26.69,
+          pv: 4567,
+          fill: '#C00000',
+        }
+    ];
 
     const weeks2019 = [1, 2, 3];
     const weeks2020 = [4, 5, 6, 7];
@@ -230,26 +307,67 @@ export default function CoachingPage() {
 
     }, [statToMeasure])
 
+    // const safetyBarDataDummy = [{name: 'safety score',
+    //     uv: '',
+    //     pv: 2400,
+    //     fill: '#0095FF'}]
+
     useEffect(() => {
         if (displayData.length !== 0) {
+            console.log(displayData[2][1])
+
+            if (displayData[2][1] === 'Fantastic+') {
+                setSafetyBarData(FantasticPlus);
+                //console.log("here")
+            }
+            else if (displayData[2][1] === 'Fantastic') {
+                setSafetyBarData(Fantastic);
+            }
+            else if (displayData[2][1] === 'Good') {
+                setSafetyBarData(Good);
+            }
+            else if (displayData[2][1] === 'Fair') {
+                setSafetyBarData(Fair);
+            }
+            else if (displayData[2][1] === 'Poor') {
+                setSafetyBarData(Poor);
+            }
+
+            if (displayData[3][1] === 'Fantastic+') {
+                setQualityBarData(FantasticPlus);
+                //console.log("here")
+            }
+            else if (displayData[3][1] === 'Fantastic') {
+                setQualityBarData(Fantastic);
+            }
+            else if (displayData[3][1] === 'Good') {
+                setQualityBarData(Good);
+            }
+            else if (displayData[3][1] === 'Fair') {
+                setQualityBarData(Fair);
+            }
+            else if (displayData[3][1] === 'Poor') {
+                setQualityBarData(Poor);
+            }
+
             for (let i = 1; i < 4; i++) {
                 overallCard[i-1] = displayData[i];
             }
             setOverallCard([...overallCard]);
     
-            safetyCard[0] = displayData[2];
+            //safetyCard[0] = displayData[2];
             for (let i = 4; i < 7; i++) {
-                safetyCard[i-3] = displayData[i];
+                safetyCard[i-4] = displayData[i];
             }
             setSafetyCard([...safetyCard])
 
-            qualityCard[0] = displayData[3];
+            //qualityCard[0] = displayData[3];
             for (let i = 7; i < 13; i++) {
-                qualityCard[i-6] = displayData[i];
+                qualityCard[i-7] = displayData[i];
             }
-            setQualityCard([...qualityCard]);
 
             setKeyAreaCard(displayData[13][1]);
+
         }
     }, [displayData])
 
@@ -324,42 +442,45 @@ export default function CoachingPage() {
                     <Grid container style={{marginTop: 40}}>
                         <Grid item xs={12}>
                             <Grid container justifyContent="center" spacing={3} >
-                                {/* <Grid item>
-                                    <Card style={{ height: '100%', width: '100%'}}>
-                                        <TableContainer component={Paper} style={{ width: 400, height:500}}>
-                                            <Table aria-label="simple table">
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <h2 style={{ marginLeft: 120}}>All Driver Data</h2>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                    {displayData.map((x) => (
-                                                        <TableRow
-                                                            key={x[0]}
-                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                        >
-                                                        <TableCell component="th" scope="row">
-                                                            {x[0]}
-                                                        </TableCell>
-                                                        <TableCell align="right">{x[1]}</TableCell>
-                                                        </TableRow>
-                                                    ))}
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-                                    </Card>
-                                </Grid> */}
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%' }}>
+                                        <h2 style={{ marginLeft: 150}}>{displayData[0][1]}</h2> <br/>
+                                        <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3>
+                                            <RadialBarChart startAngle={180} endAngle={0} width={300} height={300} barSize={10} data={safetyBarData}>  
+                                                <RadialBar
+                                                    minAngle={15}
+                                                    label={{ position: 'insideStart' }}
+                                                    background
+                                                    clockWise
+                                                    dataKey="uv"
+                                                /> 
+                                            </RadialBarChart>
+
+                                            <RadialBarChart startAngle={180} endAngle={0} width={300} height={300} barSize={10} data={qualityBarData}>  
+                                                <RadialBar
+                                                    minAngle={15}
+                                                    label={{ position: 'insideStart' }}
+                                                    background
+                                                    clockWise
+                                                    dataKey="uv"
+                                                /> 
+                                            </RadialBarChart>
+
+                                        {/* <RadialBarChart startAngle={180} endAngle={0} cx="50%" cy="50%" outerRadius="80%" barSize={10} data={safetyBarData}>
+                                            <RadialBar
+                                                minAngle={15}
+                                                label={{position: 'insideStart', fill: '#0095FF'}}
+                                            />
+                                         </RadialBarChart> */}
+                                        
+                                        {/* <h2 style={{ marginLeft: 90}}>Overall Score Card</h2> */}
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
-                                                <TableHead>
+                                                {/* <TableHead>
                                                     <TableRow>
-                                                        <h2 style={{ marginLeft: 150}}>{displayData[0][1]}'s</h2>
-                                                        <h2 style={{ marginLeft: 90}}>Overall Score Card</h2>
+                                                       
                                                     </TableRow>
-                                                </TableHead>
+                                                </TableHead> */}
                                                 <TableBody>
                                                     {overallCard.map((x) => (
                                                         <TableRow
@@ -379,14 +500,19 @@ export default function CoachingPage() {
                                 </Grid>
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
+                                        <h2 style={{ marginLeft: 105}}>Safety: {displayData[2][1]}</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
-                                                <TableHead>
+                                                {/* <TableHead>
                                                     <TableRow>
                                                         <h2 style={{ marginLeft: 130}}>Safety Card</h2>
                                                     </TableRow>
-                                                </TableHead>
+                                                </TableHead> */}
                                                 <TableBody>
+                                                    <TableRow>
+                                                        <TableCell component="th" scope="row">Metric</TableCell>
+                                                        <TableCell align="right">This Week</TableCell>
+                                                    </TableRow>
                                                     {safetyCard.map((x) => (
                                                         <TableRow
                                                             key={x[0]}
@@ -405,14 +531,19 @@ export default function CoachingPage() {
                                 </Grid>
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
+                                        <h2 style={{ marginLeft: 100}}>Quality: {displayData[3][1]}</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
-                                                <TableHead>
+                                                {/* <TableHead>
                                                     <TableRow>
                                                         <h2 style={{ marginLeft: 130}}>Quality Card</h2>
                                                     </TableRow>
-                                                </TableHead>
+                                                </TableHead> */}
                                                 <TableBody>
+                                                    <TableRow>
+                                                        <TableCell component="th" scope="row">Metric</TableCell>
+                                                        <TableCell align="right">This Week</TableCell>
+                                                    </TableRow>
                                                     {qualityCard.map((x) => (
                                                         <TableRow
                                                             key={x[0]}
@@ -431,13 +562,14 @@ export default function CoachingPage() {
                                 </Grid>
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
+                                        <h2 style={{ marginLeft: 85}}>Key Area of Focus</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
-                                                <TableHead>
+                                                {/* <TableHead>
                                                     <TableRow>
                                                         <h2 style={{ marginLeft: 85}}>Key Area of Focus</h2>
                                                     </TableRow>
-                                                </TableHead>
+                                                </TableHead> */}
                                                 <TableBody>
                                                     {keyAreaCard.map((x) => (
                                                         <>
@@ -453,6 +585,7 @@ export default function CoachingPage() {
                                 </Grid>
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
+                                        <h2 style={{marginLeft: 200}}>Data and Statistics</h2>
                                         <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
                                             <InputLabel id="demo-simple-select-standard-label">Statistic</InputLabel>
                                             <Select value={statToMeasure} onChange={selectStat} label="Statistics">
@@ -516,7 +649,7 @@ export default function CoachingPage() {
                                         }
 
                                         {!makingGraph ? 
-                                            <LineChart width={600} height={300} data={data} style={{marginTop: 20, marginRight: 20}}>
+                                            <LineChart width={450} height={400} data={data} style={{marginTop: 20, marginRight: 20}}>
                                                 <Line type="monotone" dataKey="uv" stroke="#8884d8" />
                                                 <CartesianGrid stroke="#ccc" />
                                                 <XAxis dataKey="name" />
