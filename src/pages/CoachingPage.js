@@ -464,14 +464,14 @@ export default function CoachingPage() {
                         <Grid item xs={12}>
                             <Grid container justifyContent="center" spacing={3} >
                                 <Grid item>
-                                    <Card style={{ height: '529px', width: '100%' }}>
+                                    <Card style={{ height: '100%', width: '100%' }}>
                                         <h1 style={{ marginLeft: 5, display: 'inline' }}>{displayData[0][1]}: </h1>
                                         <h1 style={{display: 'inline', color: overallColor}}>{displayData[1][1]}</h1>
                                         <br/><br/><br/><br/>
 
                                         <h4 style={{marginLeft: 100, display: 'inline' }}>Safety Score: </h4>
                                         <h4 style={{display: 'inline', color: safetyColor}}>{displayData[2][1]}</h4>
-                                        <RadialBarChart margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={200} barSize={7} cx='50%' cy='29%' data={safetyBarData}>  
+                                        <RadialBarChart cx='50%' cy='58%' outerRadius={150} margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={180} barSize={7} data={safetyBarData}>  
                                             <RadialBar
                                                 background
                                                 clockWise
@@ -481,7 +481,7 @@ export default function CoachingPage() {
 
                                         <h4 style={{marginLeft: 100, display: 'inline' }}>Quality Score: </h4>
                                         <h4 style={{display: 'inline', color: qualityColor}}>{displayData[3][1]}</h4>
-                                        <RadialBarChart margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={350} barSize={7} cx='50%' cy='29%' data={qualityBarData}>  
+                                        <RadialBarChart cx='50%' cy='58%' outerRadius={150} margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={180} barSize={7} data={qualityBarData}>  
                                             <RadialBar
                                                 background
                                                 clockWise
