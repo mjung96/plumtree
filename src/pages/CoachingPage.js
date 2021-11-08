@@ -38,6 +38,9 @@ export default function CoachingPage() {
     const [data, setData] = useState([]);
     const [safetyBarData, setSafetyBarData] = useState([]);
     const [qualityBarData, setQualityBarData] = useState([]);
+    const [overallColor, setOverallColor] = useState('');
+    const [safetyColor, setSafetyColor] = useState('');
+    const [qualityColor, setQualityColor] = useState('');
 
     const FantasticPlus = [
         {
@@ -187,6 +190,21 @@ export default function CoachingPage() {
     };
 
     useEffect(() => {
+
+        // if (Object.keys(driverData).length > 0) {
+        //     const temp = Object.entries(driverData);
+        //     temp.splice(0, 1);
+        //     setDisplayData(temp);
+        //     setDataPoints([]);
+        //     setMakingGraph(true);
+        //     setStatToMeasure('');
+        //     setFromDate('');
+        //     setToDate('');
+        //     setFromDateRange([]);
+        //     setToDateRange([]);
+        //     setData([]);
+        // }
+
         const temp = Object.entries(driverData);
         temp.splice(0, 1);
         setDisplayData(temp);
@@ -198,10 +216,28 @@ export default function CoachingPage() {
         setFromDateRange([]);
         setToDateRange([]);
         setData([]);
+
+
+
+        // if (displayData[1][1] === 'Fantastic+'){
+        //     setOverallColor('#0095FF')
+        // }
+        // else if (displayData[1][1] === 'Fantastic'){
+        //     setOverallColor('#0070C0')
+        // }
+        // else if (displayData[1][1] === 'Good'){
+        //     setOverallColor('#00AF50')
+        // }
+        // else if (displayData[1][1] === 'Fair'){
+        //     setOverallColor('#ED7D31')
+        // }
+        // else if (displayData[1][1] === 'Poor'){
+        //     setOverallColor('#C00000')
+        // }
     }, [driverData])
 
     const getDriverFromDB = (driverID) => {
-        console.log(driverID);
+        //console.log(driverID);
 
         fetch(`http://localhost:3001/drivers/${driverID}`)
             .then(res => {
@@ -225,12 +261,6 @@ export default function CoachingPage() {
             setCanClick(false);
         }
     }, [driver, year, week])
-
-
-
-
-
-    //TODO
 
     const selectFromRange = (event) => {
         setFromDate(event.target.value);
@@ -308,47 +338,73 @@ export default function CoachingPage() {
 
     }, [statToMeasure])
 
-    // const safetyBarDataDummy = [{name: 'safety score',
-    //     uv: '',
-    //     pv: 2400,
-    //     fill: '#0095FF'}]
-
     useEffect(() => {
         if (displayData.length !== 0) {
-            console.log(displayData[2][1])
+            setDataPoints([]);
+            setMakingGraph(true);
+            setStatToMeasure('');
+            setFromDate('');
+            setToDate('');
+            setFromDateRange([]);
+            setToDateRange([]);
+            setData([]);
+
+            if (displayData[1][1] === 'Fantastic+'){
+                setOverallColor('#0095FF')
+            }
+            else if (displayData[1][1] === 'Fantastic'){
+                setOverallColor('#0070C0')
+            }
+            else if (displayData[1][1] === 'Good'){
+                setOverallColor('#00AF50')
+            }
+            else if (displayData[1][1] === 'Fair'){
+                setOverallColor('#ED7D31')
+            }
+            else if (displayData[1][1] === 'Poor'){
+                setOverallColor('#C00000')
+            }
 
             if (displayData[2][1] === 'Fantastic+') {
                 setSafetyBarData(FantasticPlus);
-                //console.log("here")
+                setSafetyColor('#0095FF');
             }
             else if (displayData[2][1] === 'Fantastic') {
                 setSafetyBarData(Fantastic);
+                setSafetyColor('#0070C0');
             }
             else if (displayData[2][1] === 'Good') {
                 setSafetyBarData(Good);
+                setSafetyColor('#00AF50');
             }
             else if (displayData[2][1] === 'Fair') {
                 setSafetyBarData(Fair);
+                setSafetyColor('#ED7D31');
             }
             else if (displayData[2][1] === 'Poor') {
                 setSafetyBarData(Poor);
+                setSafetyColor('#C00000');
             }
 
             if (displayData[3][1] === 'Fantastic+') {
                 setQualityBarData(FantasticPlus);
-                //console.log("here")
+                setQualityColor('#0095FF');
             }
             else if (displayData[3][1] === 'Fantastic') {
                 setQualityBarData(Fantastic);
+                setQualityColor('#0070C0');
             }
             else if (displayData[3][1] === 'Good') {
                 setQualityBarData(Good);
+                setQualityColor('#00AF50');
             }
             else if (displayData[3][1] === 'Fair') {
                 setQualityBarData(Fair);
+                setQualityColor('#ED7D31');
             }
             else if (displayData[3][1] === 'Poor') {
                 setQualityBarData(Poor);
+                setQualityColor('#C00000');
             }
 
             for (let i = 2; i < 4; i++) {
@@ -356,16 +412,15 @@ export default function CoachingPage() {
             }
             setOverallCard([...overallCard]);
     
-            //safetyCard[0] = displayData[2];
             for (let i = 4; i < 7; i++) {
                 safetyCard[i-4] = displayData[i];
             }
             setSafetyCard([...safetyCard])
 
-            //qualityCard[0] = displayData[3];
             for (let i = 7; i < 13; i++) {
                 qualityCard[i-7] = displayData[i];
             }
+            setQualityCard([...qualityCard])
 
             setKeyAreaCard(displayData[13][1]);
 
@@ -448,7 +503,8 @@ export default function CoachingPage() {
                                     <Card style={{ height: '100%', width: '100%' }}>
                                         <Grid container spacing={12}>
                                             <Grid item>
-                                                <h2 style={{ marginLeft: 25}}>{displayData[0][1]}: {displayData[1][1]}</h2>
+                                                <h2 style={{ marginLeft: 5, display: 'inline' }}>{displayData[0][1]}: </h2>
+                                                <h2 style={{display: 'inline', color: overallColor}}>{displayData[1][1]}</h2>
                                                 {/* <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3> */}
                                             </Grid>
                                             {/* <Grid item>
@@ -531,7 +587,8 @@ export default function CoachingPage() {
                                 <Grid item>
                                     {/* <Card style={{ height: '280px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
-                                        <h2 style={{ marginLeft: 25}}>Safety: {displayData[2][1]}</h2>
+                                        <h2 style={{ marginLeft: 5, display: 'inline'}}>Safety: </h2>
+                                        <h2 style={{ display: 'inline', color: safetyColor}}>{displayData[2][1]}</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 {/* <TableHead>
@@ -563,7 +620,8 @@ export default function CoachingPage() {
                                 <Grid item>
                                     {/* <Card style={{ height: '440px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
-                                        <h2 style={{ marginLeft: 25}}>Quality: {displayData[3][1]}</h2>
+                                        <h2 style={{marginLeft: 5, display: 'inline'}}>Quality: </h2>
+                                        <h2 style={{ display: 'inline', color: qualityColor}}>{displayData[3][1]}</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 {/* <TableHead>
@@ -595,7 +653,7 @@ export default function CoachingPage() {
                                 <Grid item>
                                     {/* <Card style={{ height: '120px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
-                                        <h2 style={{ marginLeft: 25}}>Key Area of Focus</h2>
+                                        <h2 style={{ display: 'inline', marginLeft: 5}}>Key Area of Focus</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 {/* <TableHead>
@@ -619,7 +677,7 @@ export default function CoachingPage() {
                                 <Grid item>
                                     <Card style={{ height: '615px', width: '400px'}}>
                                     {/* <Card style={{ height: '100%', width: '400px'}}> */}
-                                        <h2 style={{marginLeft: 25}}>Data and Statistics</h2>
+                                        <h2 style={{display: 'inline', marginLeft: 5}}>Data and Statistics</h2> <br/>
                                         <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
                                             <InputLabel id="demo-simple-select-standard-label">Statistic</InputLabel>
                                             <Select value={statToMeasure} onChange={selectStat} label="Statistics">
