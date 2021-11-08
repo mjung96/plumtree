@@ -12,7 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
 
 export default function CoachingPage() {
     const [year, setYear] = useState('');
@@ -499,14 +499,67 @@ export default function CoachingPage() {
                         <Grid item xs={12}>
                             <Grid container justifyContent="center" spacing={3} >
                                 <Grid item>
-                                    {/* <Card style={{ height: '400px', width: '100%' }}> */}
-                                    <Card style={{ height: '100%', width: '100%' }}>
-                                        <Grid container spacing={12}>
+                                    <Card style={{ height: '529px', width: '100%' }}>
+                                    {/* <Card > */}
+                                        <h2 style={{ marginLeft: 5, display: 'inline' }}>{displayData[0][1]}: </h2>
+                                        <h2 style={{display: 'inline', color: overallColor}}>{displayData[1][1]}</h2>
+                                        <br/><br/><br/>
+
+                                        <h4 style={{marginLeft: 120, display: 'inline' }}>Safety Score: </h4>
+                                        <h4 style={{display: 'inline', color: safetyColor}}>{displayData[2][1]}</h4>
+                                        <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='29%' data={safetyBarData}>  
+                                            <RadialBar
+                                                background
+                                                clockWise
+                                                dataKey="uv"
+                                            /> 
+                                        </RadialBarChart>
+
+                                        <h4 style={{marginLeft: 120, display: 'inline' }}>Quality Score: </h4>
+                                        <h4 style={{display: 'inline', color: qualityColor}}>{displayData[3][1]}</h4>
+                                        <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='29%' data={qualityBarData}>  
+                                            <RadialBar
+                                                background
+                                                clockWise
+                                                dataKey="uv"
+                                            /> 
+                                        </RadialBarChart>
+                                        
+
+
+
+                                        {/* <Grid container spacing={2}>
                                             <Grid item>
                                                 <h2 style={{ marginLeft: 5, display: 'inline' }}>{displayData[0][1]}: </h2>
                                                 <h2 style={{display: 'inline', color: overallColor}}>{displayData[1][1]}</h2>
-                                                {/* <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3> */}
                                             </Grid>
+
+                                            
+
+                                            <Grid item>
+                                                <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='29%' data={safetyBarData}>  
+                                                    <RadialBar
+                                                        background
+                                                        clockWise
+                                                        dataKey="uv"
+                                                    /> 
+                                                </RadialBarChart>
+                                                <h4 style={{marginLeft: 120, display: 'inline' }}>Safety Score: </h4>
+                                                <h4 style={{display: 'inline', color: safetyColor}}>{displayData[2][1]}</h4>
+                                            </Grid>
+
+                                            <Grid item>
+                                                <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='22%' data={qualityBarData}>  
+                                                    <RadialBar
+                                                        background
+                                                        clockWise
+                                                        dataKey="uv"
+                                                    /> 
+                                                </RadialBarChart>
+                                                <h4 style={{marginLeft: 120, display: 'inline' }}>Quality Score: </h4>
+                                                <h4 style={{display: 'inline', color: qualityColor}}>{displayData[3][1]}</h4>
+                                            </Grid> */}
+
                                             {/* <Grid item>
                                                 <RadialBarChart startAngle={180} endAngle={0} width={200} height={250} barSize={7} data={safetyBarData}>  
                                                     <RadialBar
@@ -533,14 +586,21 @@ export default function CoachingPage() {
                                                         /> 
                                                     </RadialBarChart>
                                             </Grid> */}
-                                        </Grid>
+                                        {/* </Grid> */}
 
 
 
 
                                         {/* <h2 style={{ marginLeft: 150}}>{displayData[0][1]}</h2> 
                                         <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3> */}
-                                            <RadialBarChart margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='25%' data={safetyBarData}>  
+                                        {/* <ResponsiveContainer width="100%" height="10%"> */}
+
+
+
+
+
+
+                                            {/* <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='25%' data={safetyBarData}>  
                                                 <RadialBar
                                                     background
                                                     clockWise
@@ -550,7 +610,7 @@ export default function CoachingPage() {
                                             <h4 style={{marginLeft: 120, display: 'inline' }}>Safety Score: </h4>
                                             <h4 style={{display: 'inline', color: safetyColor}}>{displayData[2][1]}</h4>
 
-                                            <RadialBarChart margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='22%' data={qualityBarData}>  
+                                            <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='22%' data={qualityBarData}>  
                                                 <RadialBar
                                                     background
                                                     clockWise
@@ -558,7 +618,15 @@ export default function CoachingPage() {
                                                 /> 
                                             </RadialBarChart>
                                             <h4 style={{marginLeft: 120, display: 'inline' }}>Quality Score: </h4>
-                                            <h4 style={{display: 'inline', color: qualityColor}}>{displayData[3][1]}</h4>
+                                            <h4 style={{display: 'inline', color: qualityColor}}>{displayData[3][1]}</h4> */}
+
+
+
+
+
+
+
+
                                         {/* <RadialBarChart startAngle={180} endAngle={0} cx="50%" cy="50%" outerRadius="80%" barSize={10} data={safetyBarData}>
                                             <RadialBar
                                                 minAngle={15}
@@ -677,7 +745,7 @@ export default function CoachingPage() {
                                     </Card>
                                 </Grid>
                                 <Grid item>
-                                    <Card style={{ height: '615px', width: '400px'}}>
+                                    <Card style={{ height: '529px', width: '400px'}}>
                                     {/* <Card style={{ height: '100%', width: '400px'}}> */}
                                         <h2 style={{display: 'inline', marginLeft: 5}}>Data and Statistics</h2> <br/>
                                         <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
@@ -743,7 +811,7 @@ export default function CoachingPage() {
                                         }
 
                                         {!makingGraph ? 
-                                            <LineChart width={375} height={375} data={data} style={{marginTop: 20, marginRight: 20}}>
+                                            <LineChart width={375} height={335} data={data} style={{marginTop: 20, marginRight: 20}}>
                                                 <Line type="monotone" dataKey="uv" stroke="#8884d8" />
                                                 <CartesianGrid stroke="#ccc" />
                                                 <XAxis dataKey="name" />
