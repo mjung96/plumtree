@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Grid } from "@material-ui/core";
-import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import Fade from '@mui/material/Fade';
-import { FileUpload } from '@mui/icons-material';
 
 export default function UploadPage() {
     const [fileName, setFileName] = useState("Select File");

@@ -11,6 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
 
 export default function CoachingPage() {
@@ -350,8 +351,8 @@ export default function CoachingPage() {
                 setQualityBarData(Poor);
             }
 
-            for (let i = 1; i < 4; i++) {
-                overallCard[i-1] = displayData[i];
+            for (let i = 2; i < 4; i++) {
+                overallCard[i-2] = displayData[i];
             }
             setOverallCard([...overallCard]);
     
@@ -443,11 +444,49 @@ export default function CoachingPage() {
                         <Grid item xs={12}>
                             <Grid container justifyContent="center" spacing={3} >
                                 <Grid item>
+                                    {/* <Card style={{ height: '400px', width: '100%' }}> */}
                                     <Card style={{ height: '100%', width: '100%' }}>
-                                        <h2 style={{ marginLeft: 150}}>{displayData[0][1]}</h2> <br/>
-                                        <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3>
-                                            <RadialBarChart startAngle={180} endAngle={0} width={300} height={300} barSize={10} data={safetyBarData}>  
+                                        <Grid container spacing={12}>
+                                            <Grid item>
+                                                <h2 style={{ marginLeft: 150}}>{displayData[0][1]}</h2>
+                                                <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3>
+                                            </Grid>
+                                            {/* <Grid item>
+                                                <RadialBarChart startAngle={180} endAngle={0} width={200} height={250} barSize={7} data={safetyBarData}>  
+                                                    <RadialBar
+                                                        
+                                                        minAngle={15}
+                                                        label={{ position: 'insideStart' }}
+                                                        background
+                                                        clockWise
+                                                        dataKey="uv"
+                                                    /> 
+                                                </RadialBarChart>
+                                                
+                                            </Grid>
+                                            <Grid item>
+                                                <RadialBarChart startAngle={180} endAngle={0} width={200} height={250} barSize={7} data={qualityBarData}>  
+                                                        <RadialBar
+                                                            width={126}
+                                                            height={63}
+                                                            minAngle={15}
+                                                            label={{ position: 'insideStart' }}
+                                                            background
+                                                            clockWise
+                                                            dataKey="uv"
+                                                        /> 
+                                                    </RadialBarChart>
+                                            </Grid> */}
+                                        </Grid>
+
+
+
+
+                                        {/* <h2 style={{ marginLeft: 150}}>{displayData[0][1]}</h2> 
+                                        <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3> */}
+                                            <RadialBarChart startAngle={180} endAngle={0} width={400} height={150} barSize={7} cx='50%' cy='25%' data={safetyBarData}>  
                                                 <RadialBar
+                                                    
                                                     minAngle={15}
                                                     label={{ position: 'insideStart' }}
                                                     background
@@ -455,9 +494,12 @@ export default function CoachingPage() {
                                                     dataKey="uv"
                                                 /> 
                                             </RadialBarChart>
+                                            <h4 style={{marginLeft: 120}}>Safety Score: {displayData[2][1]}</h4>
 
-                                            <RadialBarChart startAngle={180} endAngle={0} width={300} height={300} barSize={10} data={qualityBarData}>  
+                                            <RadialBarChart startAngle={180} endAngle={0} width={400} height={150} barSize={7} cx='50%' cy='22%' data={qualityBarData}>  
                                                 <RadialBar
+                                                    width={126}
+                                                    height={63}
                                                     minAngle={15}
                                                     label={{ position: 'insideStart' }}
                                                     background
@@ -465,7 +507,7 @@ export default function CoachingPage() {
                                                     dataKey="uv"
                                                 /> 
                                             </RadialBarChart>
-
+                                            <h4 style={{marginLeft: 120}}>Quality Score: {displayData[3][1]}</h4>
                                         {/* <RadialBarChart startAngle={180} endAngle={0} cx="50%" cy="50%" outerRadius="80%" barSize={10} data={safetyBarData}>
                                             <RadialBar
                                                 minAngle={15}
@@ -474,13 +516,8 @@ export default function CoachingPage() {
                                          </RadialBarChart> */}
                                         
                                         {/* <h2 style={{ marginLeft: 90}}>Overall Score Card</h2> */}
-                                        <TableContainer component={Paper} style={{ width: 400, height:500}}>
+                                        {/* <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
-                                                {/* <TableHead>
-                                                    <TableRow>
-                                                       
-                                                    </TableRow>
-                                                </TableHead> */}
                                                 <TableBody>
                                                     {overallCard.map((x) => (
                                                         <TableRow
@@ -495,10 +532,11 @@ export default function CoachingPage() {
                                                     ))}
                                                 </TableBody>
                                             </Table>
-                                        </TableContainer>
+                                        </TableContainer> */}
                                     </Card>
                                 </Grid>
                                 <Grid item>
+                                    {/* <Card style={{ height: '280px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
                                         <h2 style={{ marginLeft: 105}}>Safety: {displayData[2][1]}</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
@@ -530,6 +568,7 @@ export default function CoachingPage() {
                                     </Card>
                                 </Grid>
                                 <Grid item>
+                                    {/* <Card style={{ height: '440px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
                                         <h2 style={{ marginLeft: 100}}>Quality: {displayData[3][1]}</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
@@ -561,6 +600,7 @@ export default function CoachingPage() {
                                     </Card>
                                 </Grid>
                                 <Grid item>
+                                    {/* <Card style={{ height: '120px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
                                         <h2 style={{ marginLeft: 85}}>Key Area of Focus</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
@@ -584,8 +624,9 @@ export default function CoachingPage() {
                                     </Card>
                                 </Grid>
                                 <Grid item>
-                                    <Card style={{ height: '100%', width: '100%'}}>
-                                        <h2 style={{marginLeft: 200}}>Data and Statistics</h2>
+                                    <Card style={{ height: '615px', width: '400px'}}>
+                                    {/* <Card style={{ height: '100%', width: '400px'}}> */}
+                                        <h2 style={{marginLeft: 100}}>Data and Statistics</h2>
                                         <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
                                             <InputLabel id="demo-simple-select-standard-label">Statistic</InputLabel>
                                             <Select value={statToMeasure} onChange={selectStat} label="Statistics">
@@ -649,7 +690,7 @@ export default function CoachingPage() {
                                         }
 
                                         {!makingGraph ? 
-                                            <LineChart width={450} height={400} data={data} style={{marginTop: 20, marginRight: 20}}>
+                                            <LineChart width={375} height={375} data={data} style={{marginTop: 20, marginRight: 20}}>
                                                 <Line type="monotone" dataKey="uv" stroke="#8884d8" />
                                                 <CartesianGrid stroke="#ccc" />
                                                 <XAxis dataKey="name" />
