@@ -190,21 +190,6 @@ export default function CoachingPage() {
     };
 
     useEffect(() => {
-
-        // if (Object.keys(driverData).length > 0) {
-        //     const temp = Object.entries(driverData);
-        //     temp.splice(0, 1);
-        //     setDisplayData(temp);
-        //     setDataPoints([]);
-        //     setMakingGraph(true);
-        //     setStatToMeasure('');
-        //     setFromDate('');
-        //     setToDate('');
-        //     setFromDateRange([]);
-        //     setToDateRange([]);
-        //     setData([]);
-        // }
-
         const temp = Object.entries(driverData);
         temp.splice(0, 1);
         setDisplayData(temp);
@@ -216,29 +201,9 @@ export default function CoachingPage() {
         setFromDateRange([]);
         setToDateRange([]);
         setData([]);
-
-
-
-        // if (displayData[1][1] === 'Fantastic+'){
-        //     setOverallColor('#0095FF')
-        // }
-        // else if (displayData[1][1] === 'Fantastic'){
-        //     setOverallColor('#0070C0')
-        // }
-        // else if (displayData[1][1] === 'Good'){
-        //     setOverallColor('#00AF50')
-        // }
-        // else if (displayData[1][1] === 'Fair'){
-        //     setOverallColor('#ED7D31')
-        // }
-        // else if (displayData[1][1] === 'Poor'){
-        //     setOverallColor('#C00000')
-        // }
     }, [driverData])
 
     const getDriverFromDB = (driverID) => {
-        //console.log(driverID);
-
         fetch(`http://localhost:3001/drivers/${driverID}`)
             .then(res => {
                 return res.json();
@@ -500,10 +465,9 @@ export default function CoachingPage() {
                             <Grid container justifyContent="center" spacing={3} >
                                 <Grid item>
                                     <Card style={{ height: '529px', width: '100%' }}>
-                                    {/* <Card > */}
                                         <h2 style={{ marginLeft: 5, display: 'inline' }}>{displayData[0][1]}: </h2>
                                         <h2 style={{display: 'inline', color: overallColor}}>{displayData[1][1]}</h2>
-                                        <br/><br/><br/>
+                                        <br/><br/><br/><br/><br/>
 
                                         <h4 style={{marginLeft: 120, display: 'inline' }}>Safety Score: </h4>
                                         <h4 style={{display: 'inline', color: safetyColor}}>{displayData[2][1]}</h4>
@@ -524,134 +488,6 @@ export default function CoachingPage() {
                                                 dataKey="uv"
                                             /> 
                                         </RadialBarChart>
-                                        
-
-
-
-                                        {/* <Grid container spacing={2}>
-                                            <Grid item>
-                                                <h2 style={{ marginLeft: 5, display: 'inline' }}>{displayData[0][1]}: </h2>
-                                                <h2 style={{display: 'inline', color: overallColor}}>{displayData[1][1]}</h2>
-                                            </Grid>
-
-                                            
-
-                                            <Grid item>
-                                                <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='29%' data={safetyBarData}>  
-                                                    <RadialBar
-                                                        background
-                                                        clockWise
-                                                        dataKey="uv"
-                                                    /> 
-                                                </RadialBarChart>
-                                                <h4 style={{marginLeft: 120, display: 'inline' }}>Safety Score: </h4>
-                                                <h4 style={{display: 'inline', color: safetyColor}}>{displayData[2][1]}</h4>
-                                            </Grid>
-
-                                            <Grid item>
-                                                <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='22%' data={qualityBarData}>  
-                                                    <RadialBar
-                                                        background
-                                                        clockWise
-                                                        dataKey="uv"
-                                                    /> 
-                                                </RadialBarChart>
-                                                <h4 style={{marginLeft: 120, display: 'inline' }}>Quality Score: </h4>
-                                                <h4 style={{display: 'inline', color: qualityColor}}>{displayData[3][1]}</h4>
-                                            </Grid> */}
-
-                                            {/* <Grid item>
-                                                <RadialBarChart startAngle={180} endAngle={0} width={200} height={250} barSize={7} data={safetyBarData}>  
-                                                    <RadialBar
-                                                        
-                                                        minAngle={15}
-                                                        label={{ position: 'insideStart' }}
-                                                        background
-                                                        clockWise
-                                                        dataKey="uv"
-                                                    /> 
-                                                </RadialBarChart>
-                                                
-                                            </Grid>
-                                            <Grid item>
-                                                <RadialBarChart startAngle={180} endAngle={0} width={200} height={250} barSize={7} data={qualityBarData}>  
-                                                        <RadialBar
-                                                            width={126}
-                                                            height={63}
-                                                            minAngle={15}
-                                                            label={{ position: 'insideStart' }}
-                                                            background
-                                                            clockWise
-                                                            dataKey="uv"
-                                                        /> 
-                                                    </RadialBarChart>
-                                            </Grid> */}
-                                        {/* </Grid> */}
-
-
-
-
-                                        {/* <h2 style={{ marginLeft: 150}}>{displayData[0][1]}</h2> 
-                                        <h3 style={{marginLeft: 85}}>Overall Score: {displayData[1][1]}</h3> */}
-                                        {/* <ResponsiveContainer width="100%" height="10%"> */}
-
-
-
-
-
-
-                                            {/* <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='25%' data={safetyBarData}>  
-                                                <RadialBar
-                                                    background
-                                                    clockWise
-                                                    dataKey="uv"
-                                                /> 
-                                            </RadialBarChart>
-                                            <h4 style={{marginLeft: 120, display: 'inline' }}>Safety Score: </h4>
-                                            <h4 style={{display: 'inline', color: safetyColor}}>{displayData[2][1]}</h4>
-
-                                            <RadialBarChart startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='22%' data={qualityBarData}>  
-                                                <RadialBar
-                                                    background
-                                                    clockWise
-                                                    dataKey="uv"
-                                                /> 
-                                            </RadialBarChart>
-                                            <h4 style={{marginLeft: 120, display: 'inline' }}>Quality Score: </h4>
-                                            <h4 style={{display: 'inline', color: qualityColor}}>{displayData[3][1]}</h4> */}
-
-
-
-
-
-
-
-
-                                        {/* <RadialBarChart startAngle={180} endAngle={0} cx="50%" cy="50%" outerRadius="80%" barSize={10} data={safetyBarData}>
-                                            <RadialBar
-                                                minAngle={15}
-                                                label={{position: 'insideStart', fill: '#0095FF'}}
-                                            />
-                                         </RadialBarChart> */}
-                                        
-                                        {/* <h2 style={{ marginLeft: 90}}>Overall Score Card</h2> */}
-                                        {/* <TableContainer component={Paper} style={{ width: 400, height:500}}>
-                                            <Table aria-label="simple table">
-                                                <TableBody>
-                                                    {overallCard.map((x) => (
-                                                        <TableRow
-                                                            key={x[0]}
-                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                        >
-                                                        <TableCell component="th" scope="row">
-                                                            {x[0]}
-                                                        </TableCell>
-                                                        <TableCell align="right">{x[1]}</TableCell>
-                                                        </TableRow>
-                                                    ))}
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer> */}
                                     </Card>
                                 </Grid>
                                 <Grid item>
