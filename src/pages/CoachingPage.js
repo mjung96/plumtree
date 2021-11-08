@@ -547,7 +547,8 @@ export default function CoachingPage() {
                                                     dataKey="uv"
                                                 /> 
                                             </RadialBarChart>
-                                            <h4 style={{marginLeft: 120}}>Safety Score: {displayData[2][1]}</h4>
+                                            <h4 style={{marginLeft: 120, display: 'inline' }}>Safety Score: </h4>
+                                            <h4 style={{display: 'inline', color: safetyColor}}>{displayData[2][1]}</h4>
 
                                             <RadialBarChart margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={300} barSize={7} cx='50%' cy='22%' data={qualityBarData}>  
                                                 <RadialBar
@@ -556,7 +557,8 @@ export default function CoachingPage() {
                                                     dataKey="uv"
                                                 /> 
                                             </RadialBarChart>
-                                            <h4 style={{marginLeft: 120}}>Quality Score: {displayData[3][1]}</h4>
+                                            <h4 style={{marginLeft: 120, display: 'inline' }}>Quality Score: </h4>
+                                            <h4 style={{display: 'inline', color: qualityColor}}>{displayData[3][1]}</h4>
                                         {/* <RadialBarChart startAngle={180} endAngle={0} cx="50%" cy="50%" outerRadius="80%" barSize={10} data={safetyBarData}>
                                             <RadialBar
                                                 minAngle={15}
@@ -598,7 +600,7 @@ export default function CoachingPage() {
                                                 </TableHead> */}
                                                 <TableBody>
                                                     <TableRow>
-                                                        <TableCell component="th" scope="row">Metric</TableCell>
+                                                        <TableCell component="th" scope="row"><h4 style={{display:'inline'}}>Metric</h4></TableCell>
                                                         <TableCell align="right">This Week</TableCell>
                                                     </TableRow>
                                                     {safetyCard.map((x) => (
@@ -607,7 +609,7 @@ export default function CoachingPage() {
                                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                                         >
                                                         <TableCell component="th" scope="row">
-                                                            {x[0]}
+                                                            <h4 style={{display:'inline'}}>{x[0]}</h4>
                                                         </TableCell>
                                                         <TableCell align="right">{x[1]}</TableCell>
                                                         </TableRow>
@@ -631,7 +633,7 @@ export default function CoachingPage() {
                                                 </TableHead> */}
                                                 <TableBody>
                                                     <TableRow>
-                                                        <TableCell component="th" scope="row">Metric</TableCell>
+                                                        <TableCell component="th" scope="row"><h4 style={{display:'inline'}}>Metric</h4></TableCell>
                                                         <TableCell align="right">This Week</TableCell>
                                                     </TableRow>
                                                     {qualityCard.map((x) => (
@@ -640,7 +642,7 @@ export default function CoachingPage() {
                                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                                         >
                                                         <TableCell component="th" scope="row">
-                                                            {x[0]}
+                                                            <h4 style={{display:'inline'}}>{x[0]}</h4>
                                                         </TableCell>
                                                         <TableCell align="right">{x[1]}</TableCell>
                                                         </TableRow>
