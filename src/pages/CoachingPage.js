@@ -84,7 +84,9 @@ export default function CoachingPage() {
     ];
 
     // the weeks for the years; hardcoded because theres no "real" db im pulling from so to demonstrate functionality, simply have the data in arrays 
-    const weeks2019 = [1, 2, 3];const weeks2020 = [4, 5, 6, 7];const weeks2021 = [8, 9, 10, 11, 12];
+    //const weeks2019 = [1, 2, 3];const weeks2020 = [4, 5, 6, 7];const weeks2021 = [8, 9, 10, 11, 12];
+    const weeks2019 = [1, 2];const weeks2020 = [3, 4];const weeks2021 = [5, 6];
+
 
     // when user selects year from dropdown menu, will set state for year while also updating the states of the weeks list 
     const selectYear = (event) => {
@@ -106,45 +108,63 @@ export default function CoachingPage() {
         setWeek(event.target.value);
 
         if (year === '2019') {
+            // if (event.target.value === 1) {
+            //     setDriverList(['Driver1', 'Driver2', 'Driver3'])
+            // }
+            // else if (event.target.value === 2) {
+            //     setDriverList(['Driver4', 'Driver5', 'Driver6'])
+            // }
+            // else if (event.target.value === 3) {
+            //     setDriverList(['Driver7', 'Driver8', 'Driver9'])
+            // }
             if (event.target.value === 1) {
-                setDriverList(['Driver1', 'Driver2', 'Driver3'])
+                setDriverList(['Driver1', 'Driver2'])
             }
             else if (event.target.value === 2) {
-                setDriverList(['Driver4', 'Driver5', 'Driver6'])
-            }
-            else if (event.target.value === 3) {
-                setDriverList(['Driver7', 'Driver8', 'Driver9'])
+                setDriverList(['Driver3', 'Driver4'])
             }
         }
         else if (year === '2020') {
-            if (event.target.value === 4) {
-                setDriverList(['Driver10', 'Driver11', 'Driver12'])
+            // if (event.target.value === 4) {
+            //     setDriverList(['Driver10', 'Driver11', 'Driver12'])
+            // }
+            // else if (event.target.value === 5) {
+            //     setDriverList(['Driver13', 'Driver14', 'Driver15'])
+            // }
+            // else if (event.target.value === 6) {
+            //     setDriverList(['Driver16', 'Driver17', 'Driver18'])
+            // }
+            // else if (event.target.value === 7) {
+            //     setDriverList(['Driver19', 'Driver20', 'Driver21'])
+            // }
+            if (event.target.value === 3) {
+                setDriverList(['Driver5', 'Driver6'])
             }
-            else if (event.target.value === 5) {
-                setDriverList(['Driver13', 'Driver14', 'Driver15'])
-            }
-            else if (event.target.value === 6) {
-                setDriverList(['Driver16', 'Driver17', 'Driver18'])
-            }
-            else if (event.target.value === 7) {
-                setDriverList(['Driver19', 'Driver20', 'Driver21'])
+            else if (event.target.value === 4) {
+                setDriverList(['Driver7', 'Driver8'])
             }
         }
         else {
-            if (event.target.value === 8) {
-                setDriverList(['Driver22', 'Driver23', 'Driver24'])
+            // if (event.target.value === 8) {
+            //     setDriverList(['Driver22', 'Driver23', 'Driver24'])
+            // }
+            // else if (event.target.value === 9) {
+            //     setDriverList(['Driver25', 'Driver26', 'Driver27'])
+            // }
+            // else if (event.target.value === 10) {
+            //     setDriverList(['Driver28', 'Driver29', 'Driver30'])
+            // }
+            // else if (event.target.value === 11) {
+            //     setDriverList(['Driver31', 'Driver32', 'Driver33'])
+            // }
+            // else if (event.target.value === 12) {
+            //     setDriverList(['Driver34', 'Driver35', 'Driver36'])
+            // }
+            if (event.target.value === 5) {
+                setDriverList(['Driver9', 'Driver10'])
             }
-            else if (event.target.value === 9) {
-                setDriverList(['Driver25', 'Driver26', 'Driver27'])
-            }
-            else if (event.target.value === 10) {
-                setDriverList(['Driver28', 'Driver29', 'Driver30'])
-            }
-            else if (event.target.value === 11) {
-                setDriverList(['Driver31', 'Driver32', 'Driver33'])
-            }
-            else if (event.target.value === 12) {
-                setDriverList(['Driver34', 'Driver35', 'Driver36'])
+            else if (event.target.value === 6) {
+                setDriverList(['Driver11', 'Driver12'])
             }
         }
     };
