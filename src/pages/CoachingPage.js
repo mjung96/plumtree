@@ -198,15 +198,15 @@ export default function CoachingPage() {
     }, [driverData])
 
     const getDriverFromDB = (driverID) => {
-        // setWeekList([]);
-        // setDriverList([]);
-        // setClickGraph(true);
-        // setDriverData({})
-        // setDisplayData([]);
-        // setOverallCard([]);
-        // setSafetyCard([]);
-        // setQualityCard([]);
-        // setKeyAreaCard([]);
+        //setWeekList([]);
+        //setDriverList([]);
+        //setClickGraph(true);
+        //setDriverData({})
+        //setDisplayData([]);
+        //setOverallCard([]);
+        //setSafetyCard([]);
+        //setQualityCard([]);
+        //setKeyAreaCard([]);
         // setStatToMeasure('');
         // setFromDate('');
         // setToDate('');
@@ -215,11 +215,11 @@ export default function CoachingPage() {
         // setMakingGraph(true);
         // setDataPoints([]);
         // setData([]);
-        // setSafetyBarData([]);
-        // setQualityBarData([]);
-        // setOverallColor('');
-        // setSafetyColor('');
-        // setQualityColor('');
+        //setSafetyBarData([]);
+        //setQualityBarData([]);
+        //setOverallColor('');
+        //setSafetyColor('');
+        //setQualityColor('');
 
 
         fetch(`http://localhost:3001/drivers/${driverID}`)
@@ -593,7 +593,7 @@ export default function CoachingPage() {
                                 <Grid item>
                                     {/* <Card style={{ height: '120px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
-                                        <h2 style={{ display: 'inline', marginLeft: 5}}>Key Area of Focus</h2>
+                                        <h2 style={{ display: 'inline', marginLeft: 5}}>Key Areas of Focus</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
                                                 {/* <TableHead>
@@ -702,3 +702,7 @@ export default function CoachingPage() {
       </>
     )
 }
+
+//driver 1
+// fico 1-2, change to 1-3
+// del rec 3-6
