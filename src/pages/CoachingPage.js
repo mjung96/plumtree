@@ -12,8 +12,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, RadialBarChart, RadialBar } from 'recharts';
 
-// Because this isn't talking to an actual server/DB, and I didn't know/use the data models actually used in production 
-// you'll find there are hardcoded values for the sake of ease data access. i.e. years/weeks/drivers coded in 
+// Because this isn't talking to an actual server/DB, and I didn't know/use the data models actually used in production,
+// you'll find there are hardcoded values for the sake of easy data access. i.e. years/weeks/drivers coded in 
 
 export default function CoachingPage() {
     // states of the values in the top search bar 
