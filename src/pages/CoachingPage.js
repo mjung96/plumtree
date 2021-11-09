@@ -356,7 +356,6 @@ export default function CoachingPage() {
             setQualityCard([...qualityCard])
 
             setKeyAreaCard(displayData[13][1]);
-
         }
     }, [displayData])
 
