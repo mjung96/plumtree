@@ -8,11 +8,9 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, RadialBarChart, RadialBar } from 'recharts';
 
 export default function CoachingPage() {
     const [year, setYear] = useState('');
@@ -125,10 +123,6 @@ export default function CoachingPage() {
         setDriver(event.target.value);
     };
 
-    const selectStat = (event) => {
-        setStatToMeasure(event.target.value);
-    }
-
     const selectYear = (event) => {
         setYear(event.target.value);
         if (event.target.value === '2019') {
@@ -196,14 +190,38 @@ export default function CoachingPage() {
         setDataPoints([]);
         setMakingGraph(true);
         setStatToMeasure('');
-        setFromDate('');
-        setToDate('');
+        setFromDate(0);
+        setToDate(0);
         setFromDateRange([]);
         setToDateRange([]);
         setData([]);
     }, [driverData])
 
     const getDriverFromDB = (driverID) => {
+        // setWeekList([]);
+        // setDriverList([]);
+        // setClickGraph(true);
+        // setDriverData({})
+        // setDisplayData([]);
+        // setOverallCard([]);
+        // setSafetyCard([]);
+        // setQualityCard([]);
+        // setKeyAreaCard([]);
+        // setStatToMeasure('');
+        // setFromDate('');
+        // setToDate('');
+        // setFromDateRange([]);
+        // setToDateRange([]);
+        // setMakingGraph(true);
+        // setDataPoints([]);
+        // setData([]);
+        // setSafetyBarData([]);
+        // setQualityBarData([]);
+        // setOverallColor('');
+        // setSafetyColor('');
+        // setQualityColor('');
+
+
         fetch(`http://localhost:3001/drivers/${driverID}`)
             .then(res => {
                 return res.json();
@@ -227,13 +245,6 @@ export default function CoachingPage() {
         }
     }, [driver, year, week])
 
-    const selectFromRange = (event) => {
-        setFromDate(event.target.value);
-    }
-
-    const selectToRange = (event) => {
-        setToDate(event.target.value);
-    }
     const makeGraph = () => {
         setMakingGraph(false);
         let range = toDate - fromDate;
@@ -270,11 +281,11 @@ export default function CoachingPage() {
 
     useEffect(() => {
 
-        setFromDateRange([]);
-        setToDateRange([]);
-        setFromDate('');
-        setToDate('');
-        setClickGraph(true);
+        // setFromDateRange([]);
+        // setToDateRange([]);
+        // setFromDate('');
+        // setToDate('');
+        // setClickGraph(true);
 
         if (statToMeasure === "FICO") {
             for (let i = 0; i < displayData[14][1].length; i++) {
@@ -305,14 +316,14 @@ export default function CoachingPage() {
 
     useEffect(() => {
         if (displayData.length !== 0) {
-            setDataPoints([]);
-            setMakingGraph(true);
-            setStatToMeasure('');
-            setFromDate('');
-            setToDate('');
-            setFromDateRange([]);
-            setToDateRange([]);
-            setData([]);
+            // setDataPoints([]);
+            // setMakingGraph(true);
+            // setStatToMeasure('');
+            // setFromDate('');
+            // setToDate('');
+            // setFromDateRange([]);
+            // setToDateRange([]);
+            // setData([]);
 
             if (displayData[1][1] === 'Fantastic+'){
                 setOverallColor('#0095FF')
@@ -391,6 +402,29 @@ export default function CoachingPage() {
 
         }
     }, [displayData])
+
+    // FIX GRAPH BUG 
+    const selectStat = (event) => {
+        // setDataPoints([]);
+        // setMakingGraph(true);
+        // setStatToMeasure('');
+        // setData([]);
+        setFromDateRange([]);
+        setToDateRange([]);
+        setFromDate('');
+        setToDate('');
+        setClickGraph(true);
+        setStatToMeasure(event.target.value);
+    }
+
+    const selectFromRange = (event) => {
+        setToDate('');
+        setFromDate(event.target.value);
+    }
+
+    const selectToRange = (event) => {
+        setToDate(event.target.value);
+    }
 
     return (
         <>
