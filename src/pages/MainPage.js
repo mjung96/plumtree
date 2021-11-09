@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Switch, Route, BrowerRouter } from 'react-router-dom';
-import ReactDOM from 'react-dom';
-import { Card, Button, Grid } from '@material-ui/core';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 import Header from '../components/Header';
 import UploadPage from './UploadPage';
 import CoachingPage from './CoachingPage';
