@@ -41,83 +41,27 @@ export default function CoachingPage() {
     const [qualityColor, setQualityColor] = useState('');
 
     const FantasticPlus = [
-        {
-          name: '18-24',
-          uv: 21.47,
-          pv: 2400,
-          fill: '#ffffff',
-        },
-        {
-          name: '25-29',
-          uv: 26.69,
-          pv: 4567,
-          fill: '#0095FF',
-        }
+        {name: '18-24',uv: 21.47,pv: 2400,fill: '#ffffff',},
+        {name: '25-29',uv: 26.69,pv: 4567,fill: '#0095FF',}
     ];
-
     const Fantastic = [
-        {
-          name: '18-24',
-          uv: 31.47,
-          pv: 2400,
-          fill: '#ffffff',
-        },
-        {
-          name: '25-29',
-          uv: 26.69,
-          pv: 4567,
-          fill: '#0070C0',
-        }
+        {name: '18-24',uv: 31.47,pv: 2400,fill: '#ffffff',},
+        {name: '25-29',uv: 26.69,pv: 4567,fill: '#0070C0',}
     ];
-
     const Good = [
-        {
-          name: '18-24',
-          uv: 38.47,
-          pv: 2400,
-          fill: '#ffffff',
-        },
-        {
-          name: '25-29',
-          uv: 26.69,
-          pv: 4567,
-          fill: '#00AF50',
-        }
+        {name: '18-24',uv: 38.47,pv: 2400,fill: '#ffffff',},
+        {name: '25-29',uv: 26.69,pv: 4567,fill: '#00AF50',}
     ];
-
     const Fair = [
-        {
-          name: '18-24',
-          uv: 52.00,
-          pv: 2400,
-          fill: '#ffffff',
-        },
-        {
-          name: '25-29',
-          uv: 26.69,
-          pv: 4567,
-          fill: '#ED7D31',
-        }
+        {name: '18-24',uv: 52.00,pv: 2400,fill: '#ffffff',},
+        {name: '25-29',uv: 26.69,pv: 4567,fill: '#ED7D31',}
     ];
-
     const Poor = [
-        {
-          name: '18-24',
-          uv: 100.00,
-          pv: 2400,
-          fill: '#ffffff',
-        },
-        {
-          name: '25-29',
-          uv: 26.69,
-          pv: 4567,
-          fill: '#C00000',
-        }
+        {name: '18-24',uv: 100.00,pv: 2400,fill: '#ffffff',},
+        {name: '25-29',uv: 26.69,pv: 4567,fill: '#C00000',}
     ];
 
-    const weeks2019 = [1, 2, 3];
-    const weeks2020 = [4, 5, 6, 7];
-    const weeks2021 = [8, 9, 10, 11, 12];
+    const weeks2019 = [1, 2, 3];const weeks2020 = [4, 5, 6, 7];const weeks2021 = [8, 9, 10, 11, 12];
 
     const selectDriver = (event) => {
         setDriver(event.target.value);
@@ -198,30 +142,6 @@ export default function CoachingPage() {
     }, [driverData])
 
     const getDriverFromDB = (driverID) => {
-        //setWeekList([]);
-        //setDriverList([]);
-        //setClickGraph(true);
-        //setDriverData({})
-        //setDisplayData([]);
-        //setOverallCard([]);
-        //setSafetyCard([]);
-        //setQualityCard([]);
-        //setKeyAreaCard([]);
-        // setStatToMeasure('');
-        // setFromDate('');
-        // setToDate('');
-        // setFromDateRange([]);
-        // setToDateRange([]);
-        // setMakingGraph(true);
-        // setDataPoints([]);
-        // setData([]);
-        //setSafetyBarData([]);
-        //setQualityBarData([]);
-        //setOverallColor('');
-        //setSafetyColor('');
-        //setQualityColor('');
-
-
         fetch(`http://localhost:3001/drivers/${driverID}`)
             .then(res => {
                 return res.json();
@@ -249,9 +169,6 @@ export default function CoachingPage() {
         setMakingGraph(false);
         let range = toDate - fromDate;
         let temp = [];
-
-        console.log(dataPoints);
-
         for (let i = 0; i < range + 1; i++) {
             let tempname = 'Week ' + (fromDate + i).toString();
 
@@ -262,9 +179,7 @@ export default function CoachingPage() {
 
     useEffect(() => {
         toDateRange.splice(0, toDateRange.length);
-
         setToDate('');
-
         for (let i = 0; i < fromDateRange.length; i++) {
             if (fromDateRange[i] > fromDate) {
                 toDateRange.push(fromDateRange[i]);
@@ -280,13 +195,6 @@ export default function CoachingPage() {
     }, [toDate])
 
     useEffect(() => {
-
-        // setFromDateRange([]);
-        // setToDateRange([]);
-        // setFromDate('');
-        // setToDate('');
-        // setClickGraph(true);
-
         if (statToMeasure === "FICO") {
             for (let i = 0; i < displayData[14][1].length; i++) {
                 fromDateRange[i] = displayData[14][1][i][0];
@@ -316,15 +224,6 @@ export default function CoachingPage() {
 
     useEffect(() => {
         if (displayData.length !== 0) {
-            // setDataPoints([]);
-            // setMakingGraph(true);
-            // setStatToMeasure('');
-            // setFromDate('');
-            // setToDate('');
-            // setFromDateRange([]);
-            // setToDateRange([]);
-            // setData([]);
-
             if (displayData[1][1] === 'Fantastic+'){
                 setOverallColor('#0095FF')
             }
@@ -403,12 +302,7 @@ export default function CoachingPage() {
         }
     }, [displayData])
 
-    // FIX GRAPH BUG 
     const selectStat = (event) => {
-        // setDataPoints([]);
-        // setMakingGraph(true);
-        // setStatToMeasure('');
-        // setData([]);
         setFromDateRange([]);
         setToDateRange([]);
         setFromDate('');
@@ -429,69 +323,60 @@ export default function CoachingPage() {
     return (
         <>
             <Grid>
-                <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 5 }}>
-                    <InputLabel id="demo-simple-select-standard-label">Year</InputLabel>
-                    <Select value={year} onChange={selectYear} label="Year">
-                        <MenuItem value={"2019"}>2019</MenuItem>
-                        <MenuItem value={"2020"}>2020</MenuItem>
-                        <MenuItem value={"2021"}>2021</MenuItem>
-                    </Select>
-                </FormControl>
-
-                {year === '' ?
-                    <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                        <InputLabel id="demo-simple-select-standard-label">Week</InputLabel>
-                        <Select disabled label="Week" value=''/>
-                    </FormControl>
-                    :
-                    <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                        <InputLabel id="demo-simple-select-standard-label">Week</InputLabel>
-                        <Select value={week} onChange={selectWeek} label="Week">
-                            {weekList.map(x => <MenuItem value={x}>{x}</MenuItem>)}
+                <Grid container justifyContent="center" >
+                    <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 5, marginTop: 1.5 }}>
+                        <InputLabel id="demo-simple-select-standard-label">Year</InputLabel>
+                        <Select value={year} onChange={selectYear} label="Year">
+                            <MenuItem value={"2019"}>2019</MenuItem>
+                            <MenuItem value={"2020"}>2020</MenuItem>
+                            <MenuItem value={"2021"}>2021</MenuItem>
                         </Select>
                     </FormControl>
-                } 
-
-                {week === '' ? 
-                    <FormControl variant="standard" sx={{ m: 1, minWidth: 240 }}>
-                        <InputLabel id="demo-simple-select-standard-label">Driver</InputLabel>
-                        <Select disabled label="Driver" value=''/>
-                    </FormControl>
-                    :
-                    <FormControl variant="standard" sx={{ m: 1, minWidth: 240 }}>
-                        <InputLabel id="demo-simple-select-standard-label">Driver</InputLabel>
-                        <Select value={driver} onChange={selectDriver} label="Driver">
-                            {driverList.map(x => <MenuItem value={x}>{x}</MenuItem>)}
-                        </Select>
-                    </FormControl>
-                }
-
-                {canClick ? 
-                    <Button 
-                        disabled={true} 
-                        variant="contained" 
-                        style={{ backgroundColor: '#79719880', color: 'white', marginTop: 20, width: '144px', height: '35px' }} 
-                        disableElevation
-                    >
-                        Submit
-                    </Button>
-
-                    :
-
-                    <Button 
-                        disabled={false} 
-                        variant="contained" 
-                        style={{ backgroundColor: '#797198', color: 'white', marginTop: 20, width: '144px', height: '35px' }} 
-                        disableElevation 
-                        component="label"
-                        onClick={showData}
-                    >
-                        Submit
-                    </Button>
-                }
-
+                    {year === '' ?
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginTop: 1.5 }}>
+                            <InputLabel id="demo-simple-select-standard-label">Week</InputLabel>
+                            <Select disabled label="Week" value=''/>
+                        </FormControl>
+                        :
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginTop: 1.5 }}>
+                            <InputLabel id="demo-simple-select-standard-label">Week</InputLabel>
+                            <Select value={week} onChange={selectWeek} label="Week">
+                                {weekList.map(x => <MenuItem value={x}>{x}</MenuItem>)}
+                            </Select>
+                        </FormControl>
+                    } 
+                    {week === '' ? 
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 240, marginTop: 1.5 }}>
+                            <InputLabel id="demo-simple-select-standard-label">Driver</InputLabel>
+                            <Select disabled label="Driver" value=''/>
+                        </FormControl>
+                        :
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 240, marginTop: 1.5 }}>
+                            <InputLabel id="demo-simple-select-standard-label">Driver</InputLabel>
+                            <Select value={driver} onChange={selectDriver} label="Driver">
+                                {driverList.map(x => <MenuItem value={x}>{x}</MenuItem>)}
+                            </Select>
+                        </FormControl>
+                    }
+                    {canClick ? 
+                        <Button 
+                            disabled={true} 
+                            variant="contained" 
+                            style={{ backgroundColor: '#79719880', color: 'white', marginTop: 25, width: '144px', height: '35px' }} 
+                            disableElevation
+                        >Submit</Button>
+                        :
+                        <Button 
+                            disabled={false} 
+                            variant="contained" 
+                            style={{ backgroundColor: '#797198', color: 'white', marginTop: 25, width: '144px', height: '35px' }} 
+                            disableElevation 
+                            component="label"
+                            onClick={showData}
+                        >Submit</Button>
+                    }
+                </Grid>
                 <br/>
-
                 {displayData.length !== 0 ?
                 <>
                     <Grid container style={{marginTop: 40}}>
@@ -500,115 +385,73 @@ export default function CoachingPage() {
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%' }}>
                                         <h1 style={{ marginLeft: 5, display: 'inline' }}>{displayData[0][1]}: </h1>
-                                        <h1 style={{display: 'inline', color: overallColor}}>{displayData[1][1]}</h1>
-                                        <br/><br/><br/><br/>
-
+                                        <h1 style={{display: 'inline', color: overallColor}}>{displayData[1][1]}</h1><br/><br/><br/><br/>
                                         <h4 style={{marginLeft: 100, display: 'inline' }}>Safety Score: </h4>
                                         <h4 style={{display: 'inline', color: safetyColor}}>{displayData[2][1]}</h4>
                                         <RadialBarChart cx='50%' cy='58%' outerRadius={150} margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={180} barSize={7} data={safetyBarData}>  
-                                            <RadialBar
-                                                background
-                                                clockWise
-                                                dataKey="uv"
-                                            /> 
+                                            <RadialBar background clockWise dataKey="uv"/> 
                                         </RadialBarChart>
-
                                         <h4 style={{marginLeft: 100, display: 'inline' }}>Quality Score: </h4>
                                         <h4 style={{display: 'inline', color: qualityColor}}>{displayData[3][1]}</h4>
                                         <RadialBarChart cx='50%' cy='58%' outerRadius={150} margin={{ top: 0, left: 0, right: 0, bottom: 0 }} startAngle={180} endAngle={0} width={400} height={180} barSize={7} data={qualityBarData}>  
-                                            <RadialBar
-                                                background
-                                                clockWise
-                                                dataKey="uv"
-                                            /> 
+                                            <RadialBar background clockWise dataKey="uv"/>
                                         </RadialBarChart>
                                     </Card>
                                 </Grid>
                                 <Grid item>
-                                    {/* <Card style={{ height: '280px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
                                         <h2 style={{ marginLeft: 5, display: 'inline'}}>Safety: </h2>
                                         <h2 style={{ display: 'inline', color: safetyColor}}>{displayData[2][1]}</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
-                                                {/* <TableHead>
-                                                    <TableRow>
-                                                        <h2 style={{ marginLeft: 130}}>Safety Card</h2>
-                                                    </TableRow>
-                                                </TableHead> */}
                                                 <TableBody>
                                                     <TableRow>
                                                         <TableCell component="th" scope="row"><h4 style={{display:'inline'}}>Metric</h4></TableCell>
                                                         <TableCell align="right">This Week</TableCell>
                                                     </TableRow>
                                                     {safetyCard.map((x) => (
-                                                        <TableRow
-                                                            key={x[0]}
-                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                        >
-                                                        <TableCell component="th" scope="row">
-                                                            <h4 style={{display:'inline'}}>{x[0]}</h4>
-                                                        </TableCell>
-                                                        <TableCell align="right">{x[1]}</TableCell>
-                                                        </TableRow>
-                                                    ))}
+                                                        <TableRow key={x[0]} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                                            <TableCell component="th" scope="row"><h4 style={{display:'inline'}}>{x[0]}</h4></TableCell>
+                                                            <TableCell align="right">{x[1]}</TableCell>
+                                                        </TableRow>))}
                                                 </TableBody>
                                             </Table>
                                         </TableContainer>
                                     </Card>
                                 </Grid>
                                 <Grid item>
-                                    {/* <Card style={{ height: '440px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
                                         <h2 style={{marginLeft: 5, display: 'inline'}}>Quality: </h2>
                                         <h2 style={{ display: 'inline', color: qualityColor}}>{displayData[3][1]}</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
-                                                {/* <TableHead>
-                                                    <TableRow>
-                                                        <h2 style={{ marginLeft: 130}}>Quality Card</h2>
-                                                    </TableRow>
-                                                </TableHead> */}
                                                 <TableBody>
                                                     <TableRow>
                                                         <TableCell component="th" scope="row"><h4 style={{display:'inline'}}>Metric</h4></TableCell>
                                                         <TableCell align="right">This Week</TableCell>
                                                     </TableRow>
                                                     {qualityCard.map((x) => (
-                                                        <TableRow
-                                                            key={x[0]}
-                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                        >
-                                                        <TableCell component="th" scope="row">
-                                                            <h4 style={{display:'inline'}}>{x[0]}</h4>
-                                                        </TableCell>
-                                                        <TableCell align="right">{x[1]}</TableCell>
-                                                        </TableRow>
-                                                    ))}
+                                                        <TableRow key={x[0]} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                                            <TableCell component="th" scope="row"><h4 style={{display:'inline'}}>{x[0]}</h4></TableCell>
+                                                            <TableCell align="right">{x[1]}</TableCell>
+                                                        </TableRow>))}
                                                 </TableBody>
                                             </Table>
                                         </TableContainer>
                                     </Card>
                                 </Grid>
                                 <Grid item>
-                                    {/* <Card style={{ height: '120px', width: '100%'}}> */}
                                     <Card style={{ height: '100%', width: '100%'}}>
                                         <h2 style={{ display: 'inline', marginLeft: 5}}>Key Areas of Focus</h2>
                                         <TableContainer component={Paper} style={{ width: 400, height:500}}>
                                             <Table aria-label="simple table">
-                                                {/* <TableHead>
-                                                    <TableRow>
-                                                        <h2 style={{ marginLeft: 85}}>Key Area of Focus</h2>
-                                                    </TableRow>
-                                                </TableHead> */}
                                                 <TableBody>
                                                     {keyAreaCard.map((x) => (
                                                         <>
                                                             <TableRow>
                                                                 <TableCell>{x}</TableCell>
                                                             </TableRow>
-                                                        </>
-                                                    ))}
+                                                        </>))}
                                                 </TableBody>
                                             </Table>
                                         </TableContainer>
@@ -616,7 +459,6 @@ export default function CoachingPage() {
                                 </Grid>
                                 <Grid item>
                                     <Card style={{ height: '529px', width: '400px'}}>
-                                    {/* <Card style={{ height: '100%', width: '400px'}}> */}
                                         <h2 style={{display: 'inline', marginLeft: 5}}>Data and Statistics</h2> <br/>
                                         <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
                                             <InputLabel id="demo-simple-select-standard-label">Statistic</InputLabel>
@@ -626,7 +468,6 @@ export default function CoachingPage() {
                                                 <MenuItem value={"Delivered/Received"}>Delivered/Received</MenuItem>
                                             </Select>
                                         </FormControl>
-
                                         {statToMeasure !== '' ?
                                             <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
                                                 <InputLabel id="demo-simple-select-standard-label">From Date</InputLabel>
@@ -639,9 +480,7 @@ export default function CoachingPage() {
                                                 <InputLabel id="demo-simple-select-standard-label">From Date</InputLabel>
                                                 <Select disabled label="From Range"></Select>
                                             </FormControl>
-
                                         }
-
                                         {fromDate > 0 ?
                                             <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
                                                 <InputLabel id="demo-simple-select-standard-label">To Date</InputLabel>
@@ -655,31 +494,21 @@ export default function CoachingPage() {
                                                 <Select disabled label="To Range"></Select>
                                             </FormControl>
                                         }
-
                                         {clickGraph ? 
                                             <Button 
                                                 disabled={true} 
                                                 variant="contained" 
                                                 style={{ backgroundColor: '#79719880', color: 'white', marginTop: 20, marginLeft: 20, marginRight: 15, width: '144px', height: '35px' }} 
-                                                disableElevation
-                                            >
-                                                Submit
-                                            </Button>
-
+                                                disableElevation>Submit</Button>
                                             :
-
                                             <Button 
                                                 disabled={false} 
                                                 variant="contained" 
                                                 style={{ backgroundColor: '#797198', color: 'white', marginTop: 20, marginLeft: 20, marginRight: 15, width: '144px', height: '35px' }} 
                                                 disableElevation 
                                                 component="label"
-                                                onClick={makeGraph}
-                                            >
-                                                Submit
-                                            </Button>
+                                                onClick={makeGraph}>Submit</Button>
                                         }
-
                                         {!makingGraph ? 
                                             <LineChart width={375} height={335} data={data} style={{marginTop: 20, marginRight: 20}}>
                                                 <Line type="monotone" dataKey="uv" stroke="#8884d8" />
@@ -687,7 +516,6 @@ export default function CoachingPage() {
                                                 <XAxis dataKey="name" />
                                                 <YAxis />
                                             </LineChart>
-
                                             : null
                                         }
                                     </Card>
@@ -702,7 +530,3 @@ export default function CoachingPage() {
       </>
     )
 }
-
-//driver 1
-// fico 1-2, change to 1-3
-// del rec 3-6

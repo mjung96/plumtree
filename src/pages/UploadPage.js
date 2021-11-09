@@ -31,10 +31,6 @@ export default function UploadPage() {
 
     }
 
-    // const uploadFile = () => {
-    //     console.log("hello");
-    // }
-
     const readUploadFile = (e) => {
         var file = e.target.value;
         var temp = file.lastIndexOf("\\");
@@ -55,9 +51,7 @@ export default function UploadPage() {
                     {fileName}
                 </Button>
             </label>
-
             <br/>
-
             {canClick ? 
                 <Button 
                     disabled={true} 
@@ -67,9 +61,7 @@ export default function UploadPage() {
                     >
                         Submit
                     </Button>
-
                 :
-
                 <Button 
                     disabled={false} 
                     variant="contained" 
@@ -81,9 +73,7 @@ export default function UploadPage() {
                     Submit
                 </Button>
             }
-
             <br/>
-
             {loading ? 
                 <Fade in={loading} out={!loading}><CircularProgress style={{ color: '#797198', marginTop: 50, width: '150px', height: '150px'}}/></Fade>
                 :
@@ -95,79 +85,6 @@ export default function UploadPage() {
                 null
             }
         </Grid>
-
-
-            {/* <TextField
-					onClick={onButtonClick}
-					label={file?.name || 'Select File'}
-					fullWidth={matches ? true : false}
-					style={{ minWidth: (matches ? 0 : 500) }}
-					disabled
-					className={(file === '' ? classes.fileRoot : classes.afterRoot)}
-					InputProps={{
-						endAdornment: (
-							<InputAdornment position="end">
-								<InsertDriveFileOutlinedIcon />
-							</InputAdornment>
-						)
-					}}
-				/>
-				<input type='file' id='file' ref={inputFile} style={{ display: 'none' }} onChange={(e) => { setFile(e.target.files.length === 0 ? file : e.target.files[0]) }} /> */}
-
-            {/* <label htmlFor="contained-button-file">
-                <input accept=".pdf" id="contained-button-file" multiple type="file" hidden onChange={(e) => readUploadFile(e)}/>
-                <Button variant="contained" component="span" style={{ marginTop: '5%', marginLeft: '38%', width: '344px', height: '40px'}}>
-                    {fileName}
-                </Button>
-            </label> */}
-
-            {/* <input 
-                type="file"
-                hidden
-                accept=".pdf"
-                onChange={(e) => readUploadFile(e)}
-            />
-
-            <TextField onClick={uploadFile} label="Select File" variant="standard" style={{ marginTop: '5%',marginLeft: '38%',width: '344px', height: '40px'}} value={fileName} /> */}
-
-            {/* <br/>
-
-            {canClick ? 
-                <Button 
-                    disabled={true} 
-                    variant="contained" 
-                    style={{ marginLeft: '38%', backgroundColor: '#79719880', color: 'white', marginTop: 25, width: '344px', height: '44px' }} 
-                    disableElevation
-                    >
-                        Submit
-                    </Button>
-
-                :
-
-                <Button 
-                    disabled={false} 
-                    variant="contained" 
-                    style={{ marginLeft: '38%', backgroundColor: '#797198', color: 'white', marginTop: 25, width: '344px', height: '44px' }} 
-                    disableElevation 
-                    component="label"
-                    onClick={resetUploadPage}
-                >
-                    Submit
-                </Button>
-            }
-
-            <br/>
-
-            {loading ? 
-                <CircularProgress style={{ color: '#797198', marginTop: 50, marginLeft: '44%', width: '150px', height: '150px'}}/>
-                :
-                null
-            }
-            {uploadComplete ?
-                <h2 style={{ color: '#797198', marginTop: 50, marginLeft: '42.5%' }}>Upload Complete</h2>
-                :
-                null
-            } */}
         </>
     )
 }
