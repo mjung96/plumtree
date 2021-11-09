@@ -211,8 +211,16 @@ export default function CoachingPage() {
     }, [driverData])
 
     // function that fetches the desired driver from db 
+    // const getDriverFromDB = (driverID) => {
+    //     fetch(`http://localhost:3001/drivers/${driverID}`)
+    //         .then(res => {
+    //             return res.json();
+    //         })
+    //         .then(data => {
+    //             setDriverData(data);
+    //         })
+    // }
     const getDriverFromDB = (driverID) => {
-        // fetch(`http://localhost:3001/drivers/${driverID}`)
         fetch(`https://my-json-server.typicode.com/mjung96/plumtree/drivers/${driverID}`)
             .then(res => {
                 return res.json();
