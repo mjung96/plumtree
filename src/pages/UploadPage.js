@@ -9,6 +9,7 @@ export default function UploadPage() {
     const [loading, setLoading] = useState(false);
     const [uploadComplete, setUploadComplete] = useState(false);
 
+    // when user submits, this useEffect hook handles the loading and uploaded animations with timeouts
     useEffect(() => {
         if (uploadComplete) {
             setTimeout(() => {
@@ -24,6 +25,7 @@ export default function UploadPage() {
         }
     }, [uploadComplete, loading])
 
+    // once the user hits submit, this will change the loading -> uploaded states to trigger animations and resets the UI buttons
     const resetUploadPage = () => {
         setLoading(true);
         setCanClick(true);
@@ -31,6 +33,7 @@ export default function UploadPage() {
 
     }
 
+    // this reads in the uploaded file and will get the file name to display as button content 
     const readUploadFile = (e) => {
         var file = e.target.value;
         var temp = file.lastIndexOf("\\");

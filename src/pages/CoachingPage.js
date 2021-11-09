@@ -12,34 +12,56 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, RadialBarChart, RadialBar } from 'recharts';
 
+// Because this isn't talking to an actual server/DB, and I didn't know/use the data models actually used in production 
+// you'll find there are hardcoded values for the sake of ease data access
+
 export default function CoachingPage() {
+    // states of the values in the top search bar 
     const [year, setYear] = useState('');
     const [week, setWeek] = useState('');
+    const [driver, setDriver] = useState('');
+
+    // the list of weeks and drivers must dynamically change depending on year/week, respectively, so these handle those changes
     const [weekList, setWeekList] = useState([]);
     const [driverList, setDriverList] = useState([]);
-    const [driver, setDriver] = useState('');
+    
+    // ensures user cannot submit unless all 3 fields are filled 
     const [canClick, setCanClick] = useState(true);
-    const [clickGraph, setClickGraph] = useState(true);
+
+    // driverData are the elements for specific driver from db; display is driver without the id field... can probably condense that 
     const [driverData, setDriverData] = useState({})
     const [displayData, setDisplayData] = useState([]);
-    const [overallCard, setOverallCard] = useState([]);
-    const [safetyCard, setSafetyCard] = useState([]);
-    const [qualityCard, setQualityCard] = useState([]);
-    const [keyAreaCard, setKeyAreaCard] = useState([]);
-    const [statToMeasure, setStatToMeasure] = useState('');
-    const [fromDate, setFromDate] = useState('');
-    const [toDate, setToDate] = useState('');
-    const [fromDateRange, setFromDateRange] = useState([]);
-    const [toDateRange, setToDateRange] = useState([]);
-    const [makingGraph, setMakingGraph] = useState(true);
-    const [dataPoints, setDataPoints] = useState([]);
-    const [data, setData] = useState([]);
-    const [safetyBarData, setSafetyBarData] = useState([]);
-    const [qualityBarData, setQualityBarData] = useState([]);
+
+    // color of the score changes depending on the score; these are those colors for the cards. 
     const [overallColor, setOverallColor] = useState('');
     const [safetyColor, setSafetyColor] = useState('');
     const [qualityColor, setQualityColor] = useState('');
 
+    // the reCharts radial chart takes in data; these are the states for that data to change depending on the user's score 
+    const [safetyBarData, setSafetyBarData] = useState([]);
+    const [qualityBarData, setQualityBarData] = useState([]);
+
+    // could've just pulled data from displayData, but make these states for different cards to seperate data a bit.
+    const [overallCard, setOverallCard] = useState([]);
+    const [safetyCard, setSafetyCard] = useState([]);
+    const [qualityCard, setQualityCard] = useState([]);
+    const [keyAreaCard, setKeyAreaCard] = useState([]);
+
+    // fields in the card containing the graph. same idea as the search bar states 
+    const [statToMeasure, setStatToMeasure] = useState('');
+    const [fromDate, setFromDate] = useState('');
+    const [toDate, setToDate] = useState('');
+    const [clickGraph, setClickGraph] = useState(true);
+    const [fromDateRange, setFromDateRange] = useState([]);
+    const [toDateRange, setToDateRange] = useState([]);
+
+    // the states having to do with the graph
+    const [makingGraph, setMakingGraph] = useState(true);
+    const [dataPoints, setDataPoints] = useState([]);
+    const [data, setData] = useState([]);
+
+    // reCharts Radial Chart takes in a data array of objects to use as the display elements
+    // these are the corresponding data arrays, the array name being for which score they are
     const FantasticPlus = [
         {name: '18-24',uv: 21.47,pv: 2400,fill: '#ffffff',},
         {name: '25-29',uv: 26.69,pv: 4567,fill: '#0095FF',}
@@ -61,12 +83,10 @@ export default function CoachingPage() {
         {name: '25-29',uv: 26.69,pv: 4567,fill: '#C00000',}
     ];
 
+    // the weeks for the years; hardcoded because theres no "real" db im pulling from so to demonstrate functionality, simply have the data in arrays 
     const weeks2019 = [1, 2, 3];const weeks2020 = [4, 5, 6, 7];const weeks2021 = [8, 9, 10, 11, 12];
 
-    const selectDriver = (event) => {
-        setDriver(event.target.value);
-    };
-
+    // when user selects year from dropdown menu, will set state for year while also updating the states of the weeks list 
     const selectYear = (event) => {
         setYear(event.target.value);
         if (event.target.value === '2019') {
@@ -80,6 +100,8 @@ export default function CoachingPage() {
         }
     };
 
+    // when user selects week from dropdown menu, will set state for week while also updating state of list of drivers for that week
+    // again, is hardcoded in because of no 'real' backend 
     const selectWeek = (event) => {
         setWeek(event.target.value);
 
@@ -127,6 +149,33 @@ export default function CoachingPage() {
         }
     };
 
+     // when user selects driver, updates state for driver value
+     const selectDriver = (event) => {
+        setDriver(event.target.value);
+    };
+
+    // when user selects the stat they want for the graph, will reset the states for other graph elements and set stat state
+    const selectStat = (event) => {
+        setFromDateRange([]);
+        setToDateRange([]);
+        setFromDate('');
+        setToDate('');
+        setClickGraph(true);
+        setStatToMeasure(event.target.value);
+    }
+
+    // function to set the from date dropdown value 
+    const selectFromRange = (event) => {
+        setToDate('');
+        setFromDate(event.target.value);
+    }
+
+    // function to set the to date dropdown value 
+    const selectToRange = (event) => {
+        setToDate(event.target.value);
+    }
+
+    // when a new driver is fetched from the db, useEffect will run. resets states, so they can be updated with new values 
     useEffect(() => {
         const temp = Object.entries(driverData);
         temp.splice(0, 1);
@@ -141,6 +190,7 @@ export default function CoachingPage() {
         setData([]);
     }, [driverData])
 
+    // function that fetches the desired driver from db 
     const getDriverFromDB = (driverID) => {
         fetch(`http://localhost:3001/drivers/${driverID}`)
             .then(res => {
@@ -151,6 +201,7 @@ export default function CoachingPage() {
             })
     }
 
+    // function that calls the fetch driver API call, and resets the search bar
     const showData = () => {
         getDriverFromDB(driver);
         setDriver('');
@@ -159,12 +210,14 @@ export default function CoachingPage() {
         setCanClick(true);
     }
 
+    // hook that monitors whether or not the submit button should be set to enabled 
     useEffect(() => {
         if (driver !== '' && year !== '' && week !== '') {
             setCanClick(false);
         }
     }, [driver, year, week])
 
+    // function that makes the graph 
     const makeGraph = () => {
         setMakingGraph(false);
         let range = toDate - fromDate;
@@ -177,6 +230,7 @@ export default function CoachingPage() {
         setData(temp);
     }
 
+    // when use select fromDate, this hook will set the toDate range to be a list of all the dates AFTER the from date 
     useEffect(() => {
         toDateRange.splice(0, toDateRange.length);
         setToDate('');
@@ -188,12 +242,14 @@ export default function CoachingPage() {
         setToDateRange([...toDateRange]);
     }, [fromDate])
 
+    // when user selects a toDate, set the button to draw graph to enabled 
     useEffect(() => {
         if (toDate > 0) {
             setClickGraph(false);
         }
     }, [toDate])
 
+    // when user selects which stat they want the graph to measure, this will set the FromDateRange and dataPoints accordingly. 
     useEffect(() => {
         if (statToMeasure === "FICO") {
             for (let i = 0; i < displayData[14][1].length; i++) {
@@ -222,6 +278,7 @@ export default function CoachingPage() {
 
     }, [statToMeasure])
 
+    // sets the colors/radial bars when a new driver is loaded, as well as sections off the data into corresponding cards
     useEffect(() => {
         if (displayData.length !== 0) {
             if (displayData[1][1] === 'Fantastic+'){
@@ -301,24 +358,6 @@ export default function CoachingPage() {
 
         }
     }, [displayData])
-
-    const selectStat = (event) => {
-        setFromDateRange([]);
-        setToDateRange([]);
-        setFromDate('');
-        setToDate('');
-        setClickGraph(true);
-        setStatToMeasure(event.target.value);
-    }
-
-    const selectFromRange = (event) => {
-        setToDate('');
-        setFromDate(event.target.value);
-    }
-
-    const selectToRange = (event) => {
-        setToDate(event.target.value);
-    }
 
     return (
         <>
