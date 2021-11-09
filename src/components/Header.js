@@ -12,6 +12,7 @@ import UploadIcon from '@mui/icons-material/Upload';
 export default function Header() {
     const [sideMenu, setSideMenu] = useState(false);
 
+    // opens/closes the sidemenu drawer
     const toggleDrawer = (open) => (e) => {
         setSideMenu(open);
     }
