@@ -13,7 +13,7 @@ import Paper from '@mui/material/Paper';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, RadialBarChart, RadialBar } from 'recharts';
 
 // Because this isn't talking to an actual server/DB, and I didn't know/use the data models actually used in production 
-// you'll find there are hardcoded values for the sake of ease data access
+// you'll find there are hardcoded values for the sake of ease data access. i.e. years/weeks/drivers coded in 
 
 export default function CoachingPage() {
     // states of the values in the top search bar 
@@ -24,7 +24,7 @@ export default function CoachingPage() {
     // the list of weeks and drivers must dynamically change depending on year/week, respectively, so these handle those changes
     const [weekList, setWeekList] = useState([]);
     const [driverList, setDriverList] = useState([]);
-    
+
     // ensures user cannot submit unless all 3 fields are filled 
     const [canClick, setCanClick] = useState(true);
 
