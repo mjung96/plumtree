@@ -24,7 +24,8 @@ export default function Header() {
                     <React.Fragment>
 
                         <Button onClick={toggleDrawer(true)}>
-                            <img src={logo} alt="logo" style={{ height: '40px' }} />
+                            {/* <img src={logo} alt="logo" style={{ height: '40px' }} /> */}
+                            a gReAT LoGO
                         </Button>
 
                         <Drawer open={sideMenu} onClose={toggleDrawer(false)}>
