@@ -450,7 +450,7 @@ export default function CoachingPage() {
                                     <DisplayCard title="Safety: " color={safetyColor} score={displayData[2][1]} info={safetyCard} />
                                 </Grid>
                                 <Grid item>
-                                    <DisplayCard title="Quality: " color={qualityColor} score={displayData[3][1]} info={qualityCard} />
+                                    <DisplayCard title="Quality: " color={qualityColor} score={displayData[3][1]} info={qualityCard}/>
                                 </Grid>
 
 
