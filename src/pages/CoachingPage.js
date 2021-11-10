@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -11,11 +11,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, RadialBarChart, RadialBar } from 'recharts';
+import DriverContext from '../components/DriverContext';
+import DisplayCard from '../components/DisplayCard';
 
 // Because this isn't talking to an actual server/DB, and I didn't know/use the data models actually used in production,
 // you'll find there are hardcoded values for the sake of easy data access. i.e. years/weeks/drivers coded in 
 
 export default function CoachingPage() {
+    const { driverObj, setDriverObj } = useContext(DriverContext);    
+
     // states of the values in the top search bar 
     const [year, setYear] = useState('');
     const [week, setWeek] = useState('');
@@ -84,7 +88,6 @@ export default function CoachingPage() {
     ];
 
     // the weeks for the years; hardcoded because theres no "real" db im pulling from so to demonstrate functionality, simply have the data in arrays 
-    //const weeks2019 = [1, 2, 3];const weeks2020 = [4, 5, 6, 7];const weeks2021 = [8, 9, 10, 11, 12];
     const weeks2019 = [1, 2];const weeks2020 = [3, 4];const weeks2021 = [5, 6];
 
 
@@ -108,15 +111,6 @@ export default function CoachingPage() {
         setWeek(event.target.value);
 
         if (year === '2019') {
-            // if (event.target.value === 1) {
-            //     setDriverList(['Driver1', 'Driver2', 'Driver3'])
-            // }
-            // else if (event.target.value === 2) {
-            //     setDriverList(['Driver4', 'Driver5', 'Driver6'])
-            // }
-            // else if (event.target.value === 3) {
-            //     setDriverList(['Driver7', 'Driver8', 'Driver9'])
-            // }
             if (event.target.value === 1) {
                 setDriverList(['Driver1', 'Driver2'])
             }
@@ -125,18 +119,6 @@ export default function CoachingPage() {
             }
         }
         else if (year === '2020') {
-            // if (event.target.value === 4) {
-            //     setDriverList(['Driver10', 'Driver11', 'Driver12'])
-            // }
-            // else if (event.target.value === 5) {
-            //     setDriverList(['Driver13', 'Driver14', 'Driver15'])
-            // }
-            // else if (event.target.value === 6) {
-            //     setDriverList(['Driver16', 'Driver17', 'Driver18'])
-            // }
-            // else if (event.target.value === 7) {
-            //     setDriverList(['Driver19', 'Driver20', 'Driver21'])
-            // }
             if (event.target.value === 3) {
                 setDriverList(['Driver5', 'Driver6'])
             }
@@ -145,21 +127,6 @@ export default function CoachingPage() {
             }
         }
         else {
-            // if (event.target.value === 8) {
-            //     setDriverList(['Driver22', 'Driver23', 'Driver24'])
-            // }
-            // else if (event.target.value === 9) {
-            //     setDriverList(['Driver25', 'Driver26', 'Driver27'])
-            // }
-            // else if (event.target.value === 10) {
-            //     setDriverList(['Driver28', 'Driver29', 'Driver30'])
-            // }
-            // else if (event.target.value === 11) {
-            //     setDriverList(['Driver31', 'Driver32', 'Driver33'])
-            // }
-            // else if (event.target.value === 12) {
-            //     setDriverList(['Driver34', 'Driver35', 'Driver36'])
-            // }
             if (event.target.value === 5) {
                 setDriverList(['Driver9', 'Driver10'])
             }
@@ -195,21 +162,6 @@ export default function CoachingPage() {
         setToDate(event.target.value);
     }
 
-    // when a new driver is fetched from the db, useEffect will run. resets states, so they can be updated with new values 
-    useEffect(() => {
-        const temp = Object.entries(driverData);
-        temp.splice(0, 1);
-        setDisplayData(temp);
-        setDataPoints([]);
-        setMakingGraph(true);
-        setStatToMeasure('');
-        setFromDate(0);
-        setToDate(0);
-        setFromDateRange([]);
-        setToDateRange([]);
-        setData([]);
-    }, [driverData])
-
     // function that fetches the desired driver from db 
     // const getDriverFromDB = (driverID) => {
     //     fetch(`http://localhost:3001/drivers/${driverID}`)
@@ -226,9 +178,33 @@ export default function CoachingPage() {
                 return res.json();
             })
             .then(data => {
-                setDriverData(data);
+                setDriverObj(data);
+                //setDriverData(data);
             })
     }
+
+    // when a new driver is fetched from the db, useEffect will run. resets states, so they can be updated with new values 
+    useEffect(() => {
+        const temp = Object.entries(driverData);
+        temp.splice(0, 1);
+        setDisplayData(temp);
+        setDataPoints([]);
+        setMakingGraph(true);
+        setStatToMeasure('');
+        setFromDate(0);
+        setToDate(0);
+        setFromDateRange([]);
+        setToDateRange([]);
+        setData([]);
+    }, [driverData])
+
+    useEffect (() => {
+        if (Object.keys(driverObj).length > 0) {
+            
+            setDriverData(driverObj);
+        }
+        
+    }, [driverObj])
 
     // function that calls the fetch driver API call, and resets the search bar
     const showData = () => {
@@ -448,7 +424,7 @@ export default function CoachingPage() {
                 <>
                     <Grid container style={{marginTop: 40}}>
                         <Grid item xs={12}>
-                            <Grid container justifyContent="center" spacing={3} >
+                            <Grid container justifyContent="center" spacing={2} >
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%' }}>
                                         <h1 style={{ marginLeft: 5, display: 'inline' }}>{displayData[0][1]}: </h1>
@@ -465,7 +441,22 @@ export default function CoachingPage() {
                                         </RadialBarChart>
                                     </Card>
                                 </Grid>
+
+
+
+
+
                                 <Grid item>
+                                    <DisplayCard title="Safety: " color={safetyColor} score={displayData[2][1]} info={safetyCard} />
+                                </Grid>
+                                <Grid item>
+                                    <DisplayCard title="Quality: " color={qualityColor} score={displayData[3][1]} info={qualityCard} />
+                                </Grid>
+
+
+
+
+                                {/* <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
                                         <h2 style={{ marginLeft: 5, display: 'inline'}}>Safety: </h2>
                                         <h2 style={{ display: 'inline', color: safetyColor}}>{displayData[2][1]}</h2>
@@ -485,8 +476,8 @@ export default function CoachingPage() {
                                             </Table>
                                         </TableContainer>
                                     </Card>
-                                </Grid>
-                                <Grid item>
+                                </Grid> */}
+                                {/* <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
                                         <h2 style={{marginLeft: 5, display: 'inline'}}>Quality: </h2>
                                         <h2 style={{ display: 'inline', color: qualityColor}}>{displayData[3][1]}</h2>
@@ -506,7 +497,7 @@ export default function CoachingPage() {
                                             </Table>
                                         </TableContainer>
                                     </Card>
-                                </Grid>
+                                </Grid> */}
                                 <Grid item>
                                     <Card style={{ height: '100%', width: '100%'}}>
                                         <h2 style={{ display: 'inline', marginLeft: 5}}>Key Areas of Focus</h2>
@@ -525,7 +516,8 @@ export default function CoachingPage() {
                                     </Card>
                                 </Grid>
                                 <Grid item>
-                                    <Card style={{ height: '529px', width: '400px'}}>
+                                    {/* <Card style={{ height: '529px', width: '400px'}}> */}
+                                    <Card style={{ height: '100%', width: '100%'}}>
                                         <h2 style={{display: 'inline', marginLeft: 5}}>Data and Statistics</h2> <br/>
                                         <FormControl variant="standard" sx={{ m: 1, minWidth: 120, marginLeft: 3 }}>
                                             <InputLabel id="demo-simple-select-standard-label">Statistic</InputLabel>
@@ -569,7 +561,7 @@ export default function CoachingPage() {
                                                 disableElevation>Submit</Button>
                                             :
                                             <Button 
-                                                disabled={false} 
+                                                // disabled={false} 
                                                 variant="contained" 
                                                 style={{ backgroundColor: '#797198', color: 'white', marginTop: 20, marginLeft: 20, marginRight: 15, width: '144px', height: '35px' }} 
                                                 disableElevation 

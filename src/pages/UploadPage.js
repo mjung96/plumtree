@@ -1,13 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, Grid } from "@material-ui/core";
 import CircularProgress from '@mui/material/CircularProgress';
 import Fade from '@mui/material/Fade';
+import TextField from '@mui/material/TextField';
+import DriverContext from '../components/DriverContext';
 
 export default function UploadPage() {
+    const { driverObj, setDriverObj } = useContext(DriverContext); 
+
+    const [driverName, setDriverName] = useState('no name');
     const [fileName, setFileName] = useState("Select File");
     const [canClick, setCanClick] = useState(true);
     const [loading, setLoading] = useState(false);
     const [uploadComplete, setUploadComplete] = useState(false);
+
+    // to show context is working 
+    useEffect(() => {
+        if (Object.keys(driverObj).length !== 0) {
+            const temp = Object.entries(driverObj);
+            setDriverName(temp[1][1]);
+            //console.log(temp[1][1])
+
+        }
+    }, driverObj)
 
     // when user submits, this useEffect hook handles the loading and uploaded animations with timeouts
     useEffect(() => {
@@ -76,6 +91,8 @@ export default function UploadPage() {
                     Submit
                 </Button>
             }
+            <br/>
+            <TextField value={driverName}></TextField>
             <br/>
             {loading ? 
                 <Fade in={loading} out={!loading}><CircularProgress style={{ color: '#797198', marginTop: 50, width: '150px', height: '150px'}}/></Fade>
